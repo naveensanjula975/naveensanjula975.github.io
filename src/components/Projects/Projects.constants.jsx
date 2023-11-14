@@ -41,23 +41,23 @@ export const web = [
 	{
 		name: '',
 		date: '2022-04-30',
-		// cover: livrator,
+		cover: livrator,
 		links: [{ icon: webLink, link: 'https://www.' }],
 	},
 	{ name: 'Ghiceste cuvantul',
 		date: '2022-03-20',
-		// cover: ghicicuvantul,
+		cover: ghicicuvantul,
 		links: [{ icon: dribbbleLink, link: 'https://dribbble.com/' }] },
 	{
 		name: 'Xbox Dashboard',
 		date: '2022-03-06',
-		// cover: xboxdash,
+		cover: xboxdash,
 		links: [{ icon: dribbbleLink, link: 'https://dribbble.com/' }],
 	},
 	{
 		name: 'Crypto Currencies',
 		date: '2021-10-21',
-		// cover: cryptocurrency,
+		cover: cryptocurrency,
 		links: [
 			{ icon: gitLink, link: 'https://github.com/' },
 			{ icon: dribbbleLink, link: 'https://dribbble.com/' },
@@ -66,7 +66,7 @@ export const web = [
 	{
 		name: 'Travel Deck',
 		date: '2021-11-16',
-		// cover: traveldeck,
+		cover: traveldeck,
 		links: [{ icon: dribbbleLink, link: 'https://dribbble.com/' }],
 	},
 	{
