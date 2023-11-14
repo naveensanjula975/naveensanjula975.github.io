@@ -1,14 +1,4 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-/src/components/Projects
-/src/components/ProjectBackground
-/src/Assets/images/projects
-/css
-/fonts
-/js
-/sass
-/.inde.html
-/naveensanjula975.github.io
-
 
 # dependencies
 /node_modules
