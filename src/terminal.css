@@ -1,60 +1,387 @@
-h1
-{
-    color: gray;
-    font-family: Courier;
+/* Ubuntu Terminal Replica Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #2c001e 0%, #52002f 50%, #2c001e 100%);
+    font-family: 'Ubuntu Mono', 'Liberation Mono', 'Consolas', 'Courier New', monospace;
+    color: #ffffff;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+#terminal-window {
+    width: 90vw;
+    max-width: 1200px;
+    height: 85vh;
+    background: #300a24;
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    border: 1px solid #5e2750;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Window Controls */
+#window-controls {
+    background: linear-gradient(to bottom, #5e2750, #4a1e3f);
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #2c001e;
+    user-select: none;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.control-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.control-btn.close {
+    background: #ff5f57;
+    border: 1px solid #e74c3c;
+}
+
+.control-btn.minimize {
+    background: #ffbd2e;
+    border: 1px solid #f39c12;
+}
+
+.control-btn.maximize {
+    background: #28ca42;
+    border: 1px solid #27ae60;
+}
+
+.control-btn:hover {
+    opacity: 0.8;
+    transform: scale(1.1);
+}
+
+.window-title {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.menu-icon {
+    color: #ffffff;
+    font-size: 16px;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.menu-icon:hover {
+    opacity: 1;
+}
+
+/* Terminal Content */
+#terminal-content {
+    flex: 1;
+    background: #300a24;
+    padding: 16px;
+    overflow-y: auto;
+    font-size: 14px;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+}
+
+#terminal-output {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 10px;
+}
+
+.output-line {
+    margin-bottom: 2px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    color: #ffffff;
+}
+
+/* Prompt Styling */
+.prompt {
+    color: #8ae234;
+    font-weight: bold;
+    text-shadow: 0 0 3px rgba(138, 226, 52, 0.3);
+}
+
+.command {
+    color: #ffffff;
+}
+
+#input-container {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+#prompt {
+    color: #8ae234;
+    font-weight: bold;
+    text-shadow: 0 0 3px rgba(138, 226, 52, 0.3);
+    white-space: nowrap;
+}
+
+#input-text {
+    color: #ffffff;
+    margin-left: 0;
+    min-height: 1.2em;
+    white-space: pre;
+}
+
+#cursor {
+    color: #ffffff;
+    background: #ffffff;
+    animation: blink 1s infinite;
+    margin-left: 1px;
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    line-height: 14px;
     text-align: center;
 }
 
-body
-{
-   background-color: black;
-   text-align: left;
-   font-family: Courier;
-   color: gray;
+/* File highlighting */
+.file {
+    color: #729fcf;
+    font-weight: bold;
+    text-shadow: 0 0 2px rgba(114, 159, 207, 0.3);
 }
 
-a
-{ 
-   color: gray;
-   text-decoration: none;
+/* Link styling */
+.terminal-link {
+    color: #ad7fa8;
+    text-decoration: underline;
+    transition: all 0.3s ease;
 }
 
-a:hover
-{
-   color: 6699FF;
+.terminal-link:hover {
+    color: #e6a8df;
+    text-shadow: 0 0 5px rgba(173, 127, 168, 0.5);
 }
 
-
-@keyframes blink
-{
-   0%   {color: grey;}
-   25%  {color: black;}
-   100% {color: grey;}
+/* Neofetch styling */
+.neofetch {
+    color: #8ae234;
+    font-family: monospace;
+    font-size: 13px;
+    line-height: 1.1;
+    text-shadow: 0 0 2px rgba(138, 226, 52, 0.2);
 }
 
-@-webkit-keyframes blink
-{
-   0%   {color: grey;}
-   25%  {color: black;}
-   100% {color: grey;}
+/* Command highlighting */
+.command-highlight {
+    color: #fce94f;
+    font-weight: bold;
+    text-shadow: 0 0 3px rgba(252, 233, 79, 0.3);
 }
 
-div.cursor
-{
-   display: inline-block;
-   font-family: "Times New Roman";
-   font-size: 65%;
-   position: relative;
-   bottom: 2px;
-   animation: blink 1s;
-   animation-iteration-count: infinite;
-   animation-timing-function: linear; 
-   -webkit-animation: blink 1s;
-   -webkit-animation-iteration-count: infinite;
-   -webkit-animation-timing-function: linear;
+/* Scrollbar styling */
+#terminal-output::-webkit-scrollbar {
+    width: 12px;
 }
 
-div.container
-{
-    display: inline-block;
+#terminal-output::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+}
+
+#terminal-output::-webkit-scrollbar-thumb {
+    background: rgba(138, 226, 52, 0.3);
+    border-radius: 6px;
+    border: 2px solid #300a24;
+}
+
+#terminal-output::-webkit-scrollbar-thumb:hover {
+    background: rgba(138, 226, 52, 0.5);
+}
+
+/* Cursor animation */
+@keyframes blink {
+    0%, 50% { 
+        opacity: 1; 
+        background: #ffffff;
+        color: #300a24;
+    }
+    51%, 100% { 
+        opacity: 0.3; 
+        background: transparent;
+        color: #ffffff;
+    }
+}
+
+/* Terminal startup animation */
+#terminal-window {
+    animation: terminalStartup 0.8s ease-out;
+}
+
+@keyframes terminalStartup {
+    0% {
+        opacity: 0;
+        transform: scale(0.95) translateY(-20px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+}
+
+/* Text selection */
+::selection {
+    background: rgba(138, 226, 52, 0.3);
+    color: #ffffff;
+}
+
+::-moz-selection {
+    background: rgba(138, 226, 52, 0.3);
+    color: #ffffff;
+}
+
+/* Hidden input */
+#hidden-input {
+    position: absolute !important;
+    left: -9999px !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    #terminal-window {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        max-width: none;
+    }
+    
+    #terminal-content {
+        padding: 12px;
+        font-size: 12px;
+    }
+    
+    .window-title {
+        font-size: 12px;
+    }
+    
+    .control-btn {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    #terminal-content {
+        padding: 8px;
+        font-size: 11px;
+    }
+    
+    #window-controls {
+        padding: 6px 12px;
+    }
+}
+
+/* Terminal focus indicator */
+#terminal-window:focus-within {
+    box-shadow: 0 0 0 2px rgba(138, 226, 52, 0.3), 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* Loading indicator */
+.loading-dots::after {
+    content: '';
+    animation: loadingDots 1.5s infinite;
+}
+
+@keyframes loadingDots {
+    0%, 20% { content: '.'; }
+    40% { content: '..'; }
+    60% { content: '...'; }
+    80%, 100% { content: ''; }
+}
+
+/* Error text styling */
+.error-text {
+    color: #ef2929;
+    font-weight: bold;
+}
+
+/* Success text styling */
+.success-text {
+    color: #8ae234;
+    font-weight: bold;
+}
+
+/* Warning text styling */
+.warning-text {
+    color: #fce94f;
+    font-weight: bold;
+}
+
+/* Special command outputs */
+pre {
+    margin: 0;
+    font-family: inherit;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Enhanced focus styles */
+#terminal-content:focus-within #cursor {
+    animation: blink 1s infinite;
+}
+
+/* Smooth scrolling */
+#terminal-output {
+    scroll-behavior: smooth;
+}
+
+/* Typography improvements */
+body {
+    font-feature-settings: "liga" off;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Terminal window shadow effects */
+#terminal-window::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, rgba(138, 226, 52, 0.1), rgba(173, 127, 168, 0.1));
+    border-radius: 20px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#terminal-window:hover::before {
+    opacity: 1;
 }

@@ -1,18 +1,141 @@
-<html>
-<title>Naveen Sanjula | About</title>
-<head>
-<link rel="stylesheet" type="text/css" href="terminal.css">
-</head>
-<body>
-<meta name="viewport" content="width=device, initial-scale=1.0"/>
-naveen@website:~$ finger naveen <br>
-Login: naveen &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Name: Naveen Sanjula <br> 
-Directory: /home/naveen &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Shell: /bin/bash <br>
-Project: <a href="https://linktr.ee/naveensanjula">all_projects</a><br>
-I study at <a href="https://www.sab.ac.lk/computing/">Sabaragamuwa University</a>. <br>
-Plan: <br>
-Fun fact i-think-i-am-funny. <br><br>
+<!DOCTYPE html>
+<html lang="en">
 
-naveen@website:~$ cd <a href="index.html">$HOME</a><div class="cursor"></div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naveen Sanjula | About - Terminal View</title>
+    <link rel="stylesheet" type="text/css" href="terminal.css">
+</head>
+
+<body>
+    <div id="terminal-container">
+        <div id="header">
+            <span class="header-text">naveen@portfolio:~$ finger naveen - Detailed User Information</span>
+        </div>
+        <div id="terminal-output">
+            <div class="output-line">
+                <span class="prompt-text">naveen@portfolio:~$ </span>finger naveen
+            </div>
+            <div class="output-line">&nbsp;</div>
+            <div class="output-line">Login:
+                naveen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name:
+                <span class="command-highlight">Naveen Sanjula</span></div>
+            <div class="output-line">Directory:
+                /home/naveen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shell:
+                /bin/bash</div>
+            <div class="output-line">Last login: <span id="current-time"></span></div>
+            <div class="output-line">&nbsp;</div>
+            <div class="output-line"><span class="command-highlight">Education:</span></div>
+            <div class="output-line">&nbsp;&nbsp;&nbsp;&nbsp;Currently studying at <a
+                    href="https://www.sab.ac.lk/computing/" target="_blank">Sabaragamuwa University</a></div>
+            <div class="output-line">&nbsp;&nbsp;&nbsp;&nbsp;Faculty of Computing</div>
+            <div class="output-line">&nbsp;</div>
+            <div class="output-line"><span class="command-highlight">Current Projects:</span></div>
+            <div class="output-line">&nbsp;&nbsp;&nbsp;&nbsp;→ <a href="https://linktr.ee/naveensanjula"
+                    target="_blank">all_projects</a> (Active)</div>
+            <div class="output-line">&nbsp;&nbsp;&nbsp;&nbsp;→ Interactive portfolio development (In Progress)</div>
+            <div class="output-line">&nbsp;&nbsp;&nbsp;&nbsp;→ YouTube content creation (Ongoing)</div>
+            <div class="output-line">&nbsp;</div>
+            <div class="output-line"><span class="command-highlight">Interests:</span></div>
+            <div class="output-line">&nbsp;&nbsp;&nbsp;&nbsp;• Web Development & Programming</div>
+            <div class="output-line">&nbsp;&nbsp;&nbsp;&nbsp;• Linux Systems & Terminal</div>
+            <div class="output-line">&nbsp;&nbsp;&nbsp;&nbsp;• Content Creation & Teaching</div>
+            <div class="output-line">&nbsp;&nbsp;&nbsp;&nbsp;• Open Source Contributions</div>
+            <div class="output-line">&nbsp;</div>
+            <div class="output-line"><span class="command-highlight">Fun Fact:</span> I think I am funny 😄</div>
+            <div class="output-line">&nbsp;</div>
+            <div class="output-line"><span class="command-highlight">Status:</span> <span class="file">Online and
+                    coding!</span></div>
+            <div class="output-line">&nbsp;</div>
+            <div class="output-line">
+                <span class="prompt-text">naveen@portfolio:~$ </span>
+                <button id="back-btn" onclick="goHome()">cd <span class="file">$HOME</span></button>
+                <button id="projects-btn" onclick="showProjects()">cat projects.txt</button>
+                <button id="contact-btn" onclick="showContact()">cat social.txt</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Update current time
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('current-time').textContent = now.toLocaleString();
+        }
+
+        // Navigation functions
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+
+        function showProjects() {
+            addInteractiveOutput(`<span class="command-highlight">My Projects and Work:</span><br><br>
+1. <a href="https://github.com/naveensanjula975" target="_blank">GitHub Repositories</a> - My code portfolio<br>
+2. <a href="https://naveensanjula.netlify.app/" target="_blank">Personal Website</a> - Professional portfolio<br>
+3. <a href="https://www.youtube.com/c/SLSmartTutorial" target="_blank">YouTube Channel</a> - Educational content<br>
+4. <a href="https://odysee.com/@SLSmartTutorial" target="_blank">Odysee Channel</a> - Alternative platform<br>
+5. <a href="https://naveen-sanjula.blogspot.com/" target="_blank">Technical Blog</a> - Writing and tutorials<br>
+6. <a href="https://linktr.ee/naveensanjula" target="_blank">LinkTree</a> - All links in one place`);
+        }
+
+        function showContact() {
+            addInteractiveOutput(`<span class="command-highlight">Social Media & Contact:</span><br><br>
+Professional:<br>
+• <a href="https://www.linkedin.com/in/naveensanjula/" target="_blank">LinkedIn</a> - Professional network<br>
+• <a href="https://github.com/naveensanjula975" target="_blank">GitHub</a> - Code repositories<br><br>
+Social:<br>
+• <a href="https://twitter.com/naveensanjula20" target="_blank">Twitter</a> - Tech updates & thoughts<br>
+• <a href="https://t.me/naveen_sanjula" target="_blank">Telegram</a> - Direct messaging<br><br>
+Content:<br>
+• <a href="https://www.youtube.com/c/SLSmartTutorial" target="_blank">YouTube</a> - Video tutorials<br>
+• <a href="https://linktr.ee/naveensanjula" target="_blank">LinkTree</a> - All platforms<br><br>
+<span class="file">Feel free to connect with me on any platform!</span>`);
+        }
+
+        function addInteractiveOutput(content) {
+            const outputDiv = document.createElement('div');
+            outputDiv.className = 'output-line';
+            outputDiv.innerHTML = `<br><span class="prompt-text">naveen@portfolio:~$ </span>Output:<br>${content}<br>`;
+            document.getElementById('terminal-output').appendChild(outputDiv);
+
+            // Scroll to bottom
+            const container = document.getElementById('terminal-output');
+            container.scrollTop = container.scrollHeight;
+        }
+
+        // Initialize
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        // Add some interactive styling for buttons
+        const style = document.createElement('style');
+        style.textContent = `
+            button {
+                background: transparent;
+                border: 1px solid #00ff00;
+                color: #00ff00;
+                padding: 4px 8px;
+                margin: 0 5px;
+                font-family: inherit;
+                cursor: pointer;
+                border-radius: 3px;
+                transition: all 0.3s ease;
+            }
+            
+            button:hover {
+                background: rgba(0, 255, 0, 0.1);
+                color: #ffff00;
+                border-color: #ffff00;
+                text-shadow: 0 0 5px #ffff00;
+            }
+            
+            button:active {
+                transform: scale(0.95);
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
+
 </html>

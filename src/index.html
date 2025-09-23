@@ -1,27 +1,621 @@
-<html>
-<title>Naveen Sanjula</title>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<link rel="stylesheet" type="text/css" href="terminal.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>naveen@ubuntu: ~</title>
+    <link rel="stylesheet" type="text/css" href="terminal.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
 </head>
+
 <body>
-naveen@website:~$ whoami <br>
-<a href="about.html">Naveen Sanjula</a> <br><br>
+    <!-- Terminal Window -->
+    <div id="terminal-window">
+        <!-- Window Controls -->
+        <div id="window-controls">
+            <div class="control-buttons">
+                <span class="control-btn close"></span>
+                <span class="control-btn minimize"></span>
+                <span class="control-btn maximize"></span>
+            </div>
+            <div class="window-title">naveen@ubuntu: ~</div>
+            <div class="menu-icon">≡</div>
+        </div>
 
-naveen@website:~$ echo $CODE <br>
-<a href="https://github.com/naveensanjula975">GitHub</a> <br><br>
+        <!-- Terminal Content -->
+        <div id="terminal-content">
+            <div id="terminal-output"></div>
+            <div id="input-container">
+                <span id="prompt">naveen@ubuntu:~$ </span>
+                <span id="input-text"></span>
+                <span id="cursor">█</span>
+            </div>
+        </div>
+    </div>
 
-naveen@website:~$ echo $WRITINGS <br>
-<a href="https://naveensanjula.netlify.app/">My Personal Website</a> <br>
-<a href="https://www.youtube.com/c/SLSmartTutorial">My YouTube Channel</a> <br>
-<a href="https://odysee.com/@SLSmartTutorial">My Odysee Channel</a> <br>
-<a href="https://naveen-sanjula.blogspot.com/">Blog.</a> <br><br>
+    <!-- Hidden input for capturing keystrokes -->
+    <input type="text" id="hidden-input" style="opacity: 0; position: absolute; left: -9999px;">
 
-naveen@website:~$ echo $SOCIAL <br>
-<a href="https://linktr.ee/naveensanjula">My Link Tree</a> <br>
-<a href="https://www.linkedin.com/in/naveensanjula/">Linkedin</a> <br>
-<a href="https://twitter.com/naveensanjula20">Twitter</a>  <br>
-<a href="https://t.me/naveen_sanjula">Telegram</a> <br><br>
+    <script>
+        // Terminal state
+        let currentInput = '';
+        let currentPath = '~';
+        let currentUser = 'naveen';
+        let currentHost = 'ubuntu';
+        let commandHistory = [];
+        let historyIndex = -1;
+        let isExecuting = false;
 
-naveen@website:~$ <div class="cursor">&#9608<div> 
+        // DOM elements
+        const terminalOutput = document.getElementById('terminal-output');
+        const inputText = document.getElementById('input-text');
+        const cursor = document.getElementById('cursor');
+        const prompt = document.getElementById('prompt');
+        const hiddenInput = document.getElementById('hidden-input');
+
+        // File system simulation
+        const fileSystem = {
+            '~': {
+                'about.txt': `Name: Naveen Sanjula
+Location: Sri Lanka 🇱🇰
+University: Sabaragamuwa University - Faculty of Computing
+
+About Me:
+I'm a passionate developer and content creator who loves exploring
+the intersection of technology and creativity. Currently pursuing
+my degree in Computing while building projects and sharing knowledge
+through various platforms.
+
+Interests:
+• Full-stack Web Development
+• Linux Systems & Open Source
+• Content Creation & Educational Technology
+• Mobile App Development
+• DevOps & Cloud Technologies
+
+Fun Fact: I think I'm funny.
+
+Contact: Type 'cat social.txt' for contact information`,
+
+                'projects.txt': `🚀 Current Projects & Work:
+
+📂 GitHub Repositories:
+   https://github.com/naveensanjula975
+
+💡 Recent Projects:
+• Interactive Terminal Portfolio (This one!)
+• Web Development Tutorials
+• Linux & Programming Guides`,
+
+                'social.txt': `📱 Connect with me:
+
+Professional Networks:
+├── LinkedIn: https://www.linkedin.com/in/naveensanjula/
+├── GitHub: https://github.com/naveensanjula975
+├── Blogger: https://naveen-sanjula.blogspot.com/
+└── Portfolio: https://naveensanjula.netlify.app/
+
+Social Media:
+├── Twitter: https://twitter.com/naveensanjula20
+├── Telegram: https://t.me/naveen_sanjula
+├── Odysee: https://odysee.com/@SLSmartTutorial
+└── YouTube: https://www.youtube.com/c/SLSmartTutorial
+
+Quick Access:
+└── LinkTree: https://linktr.ee/naveensanjula
+   
+
+Feel free to reach out! I'm always excited to connect with
+fellow developers and tech enthusiasts. 🚀`,
+
+                'skills.txt': `💻 Technical Skills & Expertise:
+
+Programming Languages:
+├── JavaScript (ES6+, Node.js)
+├── Python (Django, Flask, Data Analysis)
+├── Java (Spring Boot)
+├── C (Data Structures, Algorithms)
+└── HTML/CSS (Responsive Design, Flexbox, Grid)
+
+Web Technologies:
+├── Frontend: React
+├── Backend: Node.js, Express, Django, Spring
+├── Databases: MongoDB, MySQL, PostgreSQL
+└── APIs: REST
+
+DevOps & Tools:
+├── Version Control: Git, GitHub, GitLab
+├── Cloud: Azure, Google Cloud, Heroku
+├── Containers: Docker, Kubernetes basics
+├── OS: Linux (Ubuntu, CentOS), Windows
+└── Editors: VS Code, IntelliJ, Vim
+
+Currently Learning:
+├── Advanced Cloud Architecture
+├── Machine Learning with Python
+├── Blockchain Development
+└── Cybersecurity Fundamentals
+
+Teaching & Content Creation:
+├── Video Production & Editing
+├── Technical Writing
+├── Community Building
+└── Educational Technology`,
+
+                'README.md': `# Welcome to Naveen's Terminal Portfolio! 🎯
+
+## About This Project
+This is an interactive terminal-style portfolio built with vanilla
+JavaScript, HTML, and CSS. It simulates a real Linux terminal
+experience right in your browser!
+
+## Available Commands
+Try these commands to explore:
+- \`ls\` - List files and directories
+- \`cat <filename>\` - Read file contents
+- \`whoami\` - Current user info
+- \`pwd\` - Current directory
+- \`help\` - Show all commands
+- \`neofetch\` - System information
+- \`clear\` - Clear terminal
+
+## Features
+✅ Real-time command execution
+✅ File system simulation
+✅ Command history (↑/↓ arrows)
+✅ Tab completion
+✅ Realistic terminal styling
+✅ Responsive design
+
+## Tech Stack
+- HTML5 (Semantic structure)
+- CSS3 (Custom terminal styling)
+- Vanilla JavaScript (No frameworks!)
+
+Enjoy exploring! 🚀`
+            }
+        };
+
+        // Commands implementation
+        const commands = {
+            help: () => `Available commands:
+
+Basic Commands:
+  help          Show this help message
+  whoami        Display current user
+  pwd           Print working directory
+  ls [options]  List directory contents
+  cat <file>    Display file contents
+  clear         Clear terminal screen
+
+System Info:
+  uname [opts]  System information
+  date          Current date and time
+  uptime        System uptime
+  neofetch      Detailed system info
+  ps            Running processes
+
+Utilities:
+  history       Command history
+  echo <text>   Display text
+  fortune       Random quote
+  cowsay <msg>  ASCII cow with message
+
+Tips:
+  • Use ↑/↓ arrows for command history
+  • Press Tab for command completion
+  • Try 'ls' then 'cat <filename>' to explore
+  • Use 'clear' to clean up the terminal
+
+Start exploring with: ls`,
+
+            whoami: () => currentUser,
+
+            pwd: () => '/home/naveen',
+
+            ls: (args) => {
+                const files = Object.keys(fileSystem[currentPath] || {});
+                if (files.length === 0) {
+                    return 'ls: cannot access current directory: No such file or directory';
+                }
+
+                if (args.includes('-la') || args.includes('-l')) {
+                    const now = new Date();
+                    return files.map(file => {
+                        const size = Math.floor(Math.random() * 8192) + 1024;
+                        const date = new Date(now.getTime() - Math.random() * 30 * 24 * 60 * 60 * 1000);
+                        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                        const formatDate = `${monthNames[date.getMonth()]} ${date.getDate().toString().padStart(2)} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+
+                        const permissions = file.endsWith('.txt') || file.endsWith('.md') ? '-rw-r--r--' : '-rwxr-xr-x';
+                        return `${permissions} 1 ${currentUser} ${currentUser} ${size.toString().padStart(8)} ${formatDate} <span class="file">${file}</span>`;
+                    }).join('\n');
+                }
+
+                return files.map(file => `<span class="file">${file}</span>`).join('  ');
+            },
+
+            cat: (args) => {
+                if (!args.length) {
+                    return 'cat: missing file operand\nTry \'cat --help\' for more information.';
+                }
+
+                const filename = args[0];
+                const file = fileSystem[currentPath]?.[filename];
+
+                if (!file) {
+                    return `cat: ${filename}: No such file or directory`;
+                }
+
+                // Convert URLs to clickable links with better regex
+                return file.replace(/(https?:\/\/[^\s<>"']+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" class="terminal-link">$1</a>');
+            },
+
+            clear: () => {
+                terminalOutput.innerHTML = '';
+                return '';
+            },
+
+            cls: () => {
+                terminalOutput.innerHTML = '';
+                return '';
+            },
+
+            date: () => new Date().toString(),
+
+            uname: (args) => {
+                if (args.includes('-a')) {
+                    return 'Linux ubuntu 5.15.0-portfolio #1 SMP Tue Sep 23 12:00:00 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux';
+                }
+                return 'Linux';
+            },
+
+            uptime: () => {
+                const now = new Date();
+                const bootTime = new Date(now.getTime() - (Math.random() * 86400000 * 7)); // Random uptime up to 7 days
+                const uptimeMs = now - bootTime;
+                const days = Math.floor(uptimeMs / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((uptimeMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((uptimeMs % (1000 * 60 * 60)) / (1000 * 60));
+
+                const timeStr = now.toTimeString().split(' ')[0];
+                const load = [
+                    (Math.random() * 2).toFixed(2),
+                    (Math.random() * 2).toFixed(2),
+                    (Math.random() * 2).toFixed(2)
+                ];
+
+                return ` ${timeStr} up ${days} days, ${hours}:${minutes.toString().padStart(2, '0')}, 1 user, load average: ${load.join(', ')}`;
+            },
+
+            ps: () => `  PID TTY          TIME CMD
+  1337 pts/0    00:00:01 portfolio-terminal
+  2048 pts/0    00:00:00 creativity-engine
+  4096 pts/0    00:00:02 javascript-runtime
+  8192 pts/0    00:00:01 content-creator
+ 16384 pts/0    00:00:00 ps`,
+
+            history: () => {
+                if (commandHistory.length === 0) {
+                    return 'No commands in history.';
+                }
+                return commandHistory.map((cmd, index) => `${(index + 1).toString().padStart(4)} ${cmd}`).join('\n');
+            },
+
+            echo: (args) => args.join(' '),
+
+            fortune: () => {
+                const quotes = [
+                    "The best way to predict the future is to invent it. - Alan Kay",
+                    "Code is poetry written in logic.",
+                    "Programming is thinking, not typing.",
+                    "Talk is cheap. Show me the code. - Linus Torvalds",
+                    "First, solve the problem. Then, write the code. - John Johnson",
+                    "The only way to learn a new programming language is by writing programs in it. - Dennis Ritchie",
+                    "Simplicity is the ultimate sophistication. - Leonardo da Vinci",
+                    "Any fool can write code that a computer can understand. Good programmers write code that humans can understand. - Martin Fowler"
+                ];
+                return quotes[Math.floor(Math.random() * quotes.length)];
+            },
+
+            cowsay: (args) => {
+                const message = args.join(' ') || 'Hello from Naveen! 🐄';
+                const len = message.length;
+                const border = '─'.repeat(len + 2);
+
+                return `
+ ┌${border}┐
+ │ ${message} │
+ └${border}┘
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||`;
+            },
+
+            neofetch: () => `
+<span class="neofetch">                    .-/+oossssoo+/-.               ${currentUser}@${currentHost}</span>
+<span class="neofetch">                \`:+ssssssssssssssss+:\`             ────────────────</span>
+<span class="neofetch">              -+ssssssssssssssssssss+-           OS: Ubuntu 22.04.3 LTS x86_64</span>
+<span class="neofetch">            -+sssssssssssssssssssssss+-         Host: Interactive Portfolio</span>
+<span class="neofetch">          \`-/+sssssssssssssssssssssss/-\`       Kernel: 5.15.0-portfolio</span>
+<span class="neofetch">         .+sssssssssssssss+++++++++++++.       Uptime: Always online</span>
+<span class="neofetch">        :+sssssssssssssss+:     .:++++.       Packages: 2048 (npm), 512 (apt)</span>
+<span class="neofetch">       /+sssssssssssssss+.       ./+++.       Shell: interactive-terminal 1.0</span>
+<span class="neofetch">      .+sssssssssssssss+.         ./+.        Resolution: Responsive</span>
+<span class="neofetch">      +sssssssssssssss+.                      DE: Custom Portfolio Environment</span>
+<span class="neofetch">      +sssssssssssssss+                       WM: Browser</span>
+<span class="neofetch">      +sssssssssssssss/                       Terminal: JavaScript Terminal</span>
+<span class="neofetch">      .+sssssssssssss/                        CPU: Creativity Engine</span>
+<span class="neofetch">       \`/+sssssssssss/.                        Memory: ∞ Ideas</span>
+<span class="neofetch">         ./osssssss/.                          Disk (/): Code & Dreams</span>
+<span class="neofetch">           \`-/oss/-\`                            
+<span class="neofetch">              \`--\`                               Contact: linktr.ee/naveensanjula</span>`
+        };
+
+        // Auto-run commands on load
+        const autoCommands = [
+            { cmd: 'whoami', delay: 800 },
+            { cmd: 'ls', delay: 600 },
+            { cmd: 'cat about.txt', delay: 1000 }
+        ];
+
+        let autoIndex = 0;
+
+        // Execute command function
+        function executeCommand(input) {
+            const parts = input.trim().split(' ');
+            const command = parts[0].toLowerCase();
+            const args = parts.slice(1);
+
+            if (commands[command]) {
+                return commands[command](args);
+            } else if (command === '') {
+                return '';
+            } else {
+                return `bash: ${command}: command not found`;
+            }
+        }
+
+        // Typewriter effect for output
+        function typeText(element, text, speed = 15) {
+            return new Promise((resolve) => {
+                let i = 0;
+                element.innerHTML = '';
+
+                function type() {
+                    if (i < text.length) {
+                        if (text.charAt(i) === '<') {
+                            const tagEnd = text.indexOf('>', i);
+                            if (tagEnd !== -1) {
+                                element.innerHTML += text.substring(i, tagEnd + 1);
+                                i = tagEnd + 1;
+                            } else {
+                                element.innerHTML += text.charAt(i);
+                                i++;
+                            }
+                        } else {
+                            element.innerHTML += text.charAt(i);
+                            i++;
+                        }
+                        terminalOutput.scrollTop = terminalOutput.scrollHeight;
+                        setTimeout(type, speed);
+                    } else {
+                        resolve();
+                    }
+                }
+                type();
+            });
+        }
+
+        // Add output to terminal
+        async function addOutput(text, isCommand = false, useTypewriter = false) {
+            const outputDiv = document.createElement('div');
+            outputDiv.className = 'output-line';
+
+            if (isCommand) {
+                outputDiv.innerHTML = `<span class="prompt">${currentUser}@${currentHost}:${currentPath}$ </span><span class="command">${text}</span>`;
+            } else {
+                if (text === '') return;
+                terminalOutput.appendChild(outputDiv);
+
+                if (useTypewriter) {
+                    await typeText(outputDiv, text, 20);
+                } else {
+                    outputDiv.innerHTML = text;
+                }
+                return;
+            }
+
+            terminalOutput.appendChild(outputDiv);
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        }
+
+        // Auto-run initial commands
+        async function runAutoCommands() {
+            // Initial welcome message
+            await addOutput('Welcome to Ubuntu 22.04.3 LTS', false, true);
+            await new Promise(resolve => setTimeout(resolve, 500));
+            await addOutput('', false);
+
+            // Run auto commands
+            for (const auto of autoCommands) {
+                await new Promise(resolve => setTimeout(resolve, auto.delay));
+                await addOutput(auto.cmd, true);
+
+                const result = executeCommand(auto.cmd);
+                if (result) {
+                    commandHistory.push(auto.cmd);
+                    // Use typewriter effect only for certain commands, not for ls
+                    const useTypewriter = auto.cmd.startsWith('cat') || auto.cmd.startsWith('help') || auto.cmd.startsWith('neofetch');
+                    await addOutput(result, false, useTypewriter);
+                }
+                await addOutput('', false);
+            }
+
+            isExecuting = false;
+            updatePrompt();
+            hiddenInput.focus();
+        }
+
+        // Handle keyboard input
+        function handleInput(char) {
+            if (isExecuting) return;
+
+            currentInput += char;
+            updateDisplay();
+        }
+
+        function handleBackspace() {
+            if (isExecuting) return;
+
+            currentInput = currentInput.slice(0, -1);
+            updateDisplay();
+        }
+
+        async function handleEnter() {
+            if (isExecuting || currentInput.trim() === '') {
+                if (currentInput.trim() === '') {
+                    await addOutput('', true);
+                    await addOutput('', false);
+                }
+                currentInput = '';
+                updateDisplay();
+                return;
+            }
+
+            isExecuting = true;
+            const command = currentInput.trim();
+
+            await addOutput(command, true);
+
+            if (command !== '') {
+                commandHistory.push(command);
+                historyIndex = commandHistory.length;
+
+                const result = executeCommand(command);
+                if (result) {
+                    await addOutput(result, false, true);
+                }
+            }
+
+            await addOutput('', false);
+            currentInput = '';
+            isExecuting = false;
+            updateDisplay();
+            updatePrompt();
+            hiddenInput.focus();
+        }
+
+        function handleHistory(direction) {
+            if (isExecuting) return;
+
+            if (direction === 'up' && historyIndex > 0) {
+                historyIndex--;
+                currentInput = commandHistory[historyIndex];
+            } else if (direction === 'down') {
+                if (historyIndex < commandHistory.length - 1) {
+                    historyIndex++;
+                    currentInput = commandHistory[historyIndex];
+                } else {
+                    historyIndex = commandHistory.length;
+                    currentInput = '';
+                }
+            }
+            updateDisplay();
+        }
+
+        function handleTab() {
+            if (isExecuting) return;
+
+            const input = currentInput.trim();
+            const spaceIndex = input.indexOf(' ');
+
+            if (spaceIndex === -1) {
+                // Command completion
+                const partial = input.toLowerCase();
+                const matches = Object.keys(commands).filter(cmd => cmd.startsWith(partial));
+
+                if (matches.length === 1) {
+                    currentInput = matches[0];
+                    updateDisplay();
+                } else if (matches.length > 1) {
+                    addOutput(`${matches.join('  ')}`, false);
+                }
+            } else {
+                // File completion
+                const command = input.substring(0, spaceIndex);
+                const partialFile = input.substring(spaceIndex + 1).toLowerCase();
+
+                // Only provide file completion for commands that work with files
+                if (['cat', 'ls'].includes(command)) {
+                    const files = Object.keys(fileSystem[currentPath] || {});
+                    const matches = files.filter(file => file.toLowerCase().startsWith(partialFile));
+
+                    if (matches.length === 1) {
+                        currentInput = `${command} ${matches[0]}`;
+                        updateDisplay();
+                    } else if (matches.length > 1) {
+                        addOutput(`${matches.join('  ')}`, false);
+                    }
+                }
+            }
+        }
+
+        function updateDisplay() {
+            inputText.textContent = currentInput;
+        }
+
+        function updatePrompt() {
+            prompt.textContent = `${currentUser}@${currentHost}:${currentPath}$ `;
+        }
+
+        // Event listeners
+        document.addEventListener('keydown', (e) => {
+            hiddenInput.focus();
+
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleEnter();
+            } else if (e.key === 'Backspace') {
+                e.preventDefault();
+                handleBackspace();
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                handleHistory('up');
+            } else if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                handleHistory('down');
+            } else if (e.key === 'Tab') {
+                e.preventDefault();
+                handleTab();
+            } else if (e.key.length === 1) {
+                e.preventDefault();
+                handleInput(e.key);
+            } else if (e.ctrlKey && e.key === 'l') {
+                e.preventDefault();
+                executeCommand('clear');
+                updateDisplay();
+            }
+        });
+
+        document.addEventListener('click', () => {
+            hiddenInput.focus();
+        });
+
+        // Initialize
+        isExecuting = true;
+        hiddenInput.focus();
+
+        // Start auto commands after page load
+        setTimeout(() => {
+            runAutoCommands();
+        }, 1000);
+    </script>
 </body>
+
 </html>
