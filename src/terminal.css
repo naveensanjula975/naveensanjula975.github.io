@@ -1,105 +1,401 @@
-/* Ubuntu Terminal Replica Styles */
+/* Ubuntu 22.04 GNOME Desktop — Linux Terminal Portfolio */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400&family=Ubuntu:wght@300;400;500;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+:root {
+    --panel-bg: rgba(12, 6, 20, 0.94);
+    --dock-bg: rgba(18, 9, 30, 0.82);
+    --headerbar-bg: #2d2d2d;
+    --headerbar-border: #1a1a1a;
+    --terminal-bg: #300a24;
+    --accent-orange: #e95420;
+    --btn-close-hover: #e01b24;
+    --btn-min-hover: #ffc030;
+    --btn-max-hover: #3cb64c;
+    --text-primary: #ffffff;
+    --text-dim: rgba(255, 255, 255, 0.65);
+    --prompt-user: #4ec94a;
+    --prompt-path: #729fcf;
+    --file-color: #729fcf;
+    --link-color: #c29fdc;
+}
+
+/* ===== Desktop Body ===== */
 body {
-    background: linear-gradient(135deg, #2c001e 0%, #52002f 50%, #2c001e 100%);
-    font-family: 'Ubuntu Mono', 'Liberation Mono', 'Consolas', 'Courier New', monospace;
-    color: #ffffff;
+    background:
+        radial-gradient(ellipse 130% 90% at 12% 65%, rgba(130, 0, 110, 0.28) 0%, transparent 58%),
+        radial-gradient(ellipse 110% 110% at 88% 28%, rgba(35, 0, 110, 0.22) 0%, transparent 55%),
+        radial-gradient(ellipse 90% 80% at 50% 105%, rgba(110, 0, 65, 0.18) 0%, transparent 45%),
+        linear-gradient(158deg, #1c0b30 0%, #0e0620 100%);
+    font-family: 'Ubuntu', 'Liberation Sans', sans-serif;
+    color: var(--text-primary);
     overflow: hidden;
     height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+    width: 100vw;
+    position: fixed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "liga" off;
 }
 
-#terminal-window {
-    width: 90vw;
-    max-width: 1200px;
-    height: 85vh;
-    background: #300a24;
-    border-radius: 10px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-    border: 1px solid #5e2750;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Window Controls */
-#window-controls {
-    background: linear-gradient(to bottom, #5e2750, #4a1e3f);
-    padding: 8px 16px;
+/* ===== GNOME Top Panel ===== */
+#gnome-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 27px;
+    background: var(--panel-bg);
+    backdrop-filter: blur(24px) saturate(1.2);
+    -webkit-backdrop-filter: blur(24px) saturate(1.2);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #2c001e;
+    padding: 0 6px;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    user-select: none;
+}
+
+.panel-section {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex: 1;
+}
+
+.panel-section.center {
+    justify-content: center;
+}
+
+.panel-section.right {
+    justify-content: flex-end;
+}
+
+.activities-btn {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 2px 9px;
+    border-radius: 4px;
+    letter-spacing: 0.25px;
+    transition: background 0.12s;
+    height: 23px;
+}
+
+.activities-btn:hover {
+    background: rgba(255, 255, 255, 0.13);
+}
+
+.app-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.88);
+    padding: 0 4px;
+    letter-spacing: 0.1px;
+}
+
+#panel-clock {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    cursor: default;
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.92);
+    transition: background 0.12s;
+}
+
+#panel-clock:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sys-cluster {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border-radius: 4px;
+    padding: 0 2px;
+    transition: background 0.12s;
+}
+
+.sys-cluster:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sys-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 23px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+/* ===== Ubuntu Dock (left side) ===== */
+#ubuntu-dock {
+    position: fixed;
+    left: 0;
+    top: 27px;
+    bottom: 0;
+    width: 52px;
+    background: var(--dock-bg);
+    backdrop-filter: blur(24px) saturate(1.1);
+    -webkit-backdrop-filter: blur(24px) saturate(1.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6px 0 6px;
+    z-index: 999;
+    gap: 2px;
+}
+
+.dock-item {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.15s;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.dock-item:hover {
+    background: rgba(255, 255, 255, 0.13);
+    transform: scale(1.06);
+}
+
+.dock-item.active {
+    background: rgba(233, 84, 32, 0.18);
+}
+
+.dock-item.active::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 18px;
+    background: var(--accent-orange);
+    border-radius: 0 2px 2px 0;
+}
+
+.dock-terminal-icon {
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: -1px;
+}
+
+.dock-divider {
+    width: 28px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 3px 0;
+    flex-shrink: 0;
+}
+
+.dock-item.show-apps {
+    background: none;
+    margin-top: auto;
+    margin-bottom: 2px;
+}
+
+.dock-item.show-apps:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Desktop Area ===== */
+#desktop {
+    position: fixed;
+    top: 27px;
+    left: 52px;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+/* ===== Terminal Window ===== */
+#terminal-window {
+    width: min(92vw, 1080px);
+    height: min(88vh, 760px);
+    background: var(--terminal-bg);
+    border-radius: 10px;
+    box-shadow:
+        0 40px 100px rgba(0, 0, 0, 0.75),
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: windowOpen 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes windowOpen {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ===== GNOME Headerbar ===== */
+#window-controls {
+    background: var(--headerbar-bg);
+    height: 47px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--headerbar-border);
+    border-radius: 10px 10px 0 0;
+    position: relative;
     user-select: none;
 }
 
 .control-buttons {
     display: flex;
-    gap: 8px;
+    gap: 6px;
+    align-items: center;
+    z-index: 1;
 }
 
 .control-btn {
-    width: 12px;
-    height: 12px;
+    width: 13px;
+    height: 13px;
     border-radius: 50%;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(0, 0, 0, 0.4);
     cursor: pointer;
-    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7px;
+    font-weight: 700;
+    font-family: 'Ubuntu', sans-serif;
+    line-height: 1;
+    color: transparent;
+    transition: background 0.12s, color 0.12s, border-color 0.12s;
 }
 
-.control-btn.close {
-    background: #ff5f57;
-    border: 1px solid #e74c3c;
+/* Show symbols when hovering the control-buttons group */
+.control-buttons:hover .control-btn {
+    color: rgba(0, 0, 0, 0.6);
+    background: rgba(255, 255, 255, 0.22);
 }
 
-.control-btn.minimize {
-    background: #ffbd2e;
-    border: 1px solid #f39c12;
+.control-btn.close:hover {
+    background: var(--btn-close-hover) !important;
+    border-color: #b01418 !important;
+    color: rgba(255, 255, 255, 0.92) !important;
 }
 
-.control-btn.maximize {
-    background: #28ca42;
-    border: 1px solid #27ae60;
+.control-btn.minimize:hover {
+    background: var(--btn-min-hover) !important;
+    border-color: #c09020 !important;
+    color: rgba(0, 0, 0, 0.7) !important;
 }
 
-.control-btn:hover {
-    opacity: 0.8;
-    transform: scale(1.1);
+.control-btn.maximize:hover {
+    background: var(--btn-max-hover) !important;
+    border-color: #269035 !important;
+    color: rgba(0, 0, 0, 0.7) !important;
 }
 
 .window-title {
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 500;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.72);
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.15px;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.headerbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    z-index: 1;
+}
+
+.new-tab-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 18px;
+    font-weight: 300;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: background 0.12s, color 0.12s;
+    padding-bottom: 1px;
+}
+
+.new-tab-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
 }
 
 .menu-icon {
-    color: #ffffff;
-    font-size: 16px;
-    opacity: 0.7;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 14px;
     cursor: pointer;
+    width: 28px;
+    height: 28px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.12s, color 0.12s;
 }
 
 .menu-icon:hover {
-    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
 }
 
-/* Terminal Content */
+/* ===== Terminal Content ===== */
 #terminal-content {
     flex: 1;
-    background: #300a24;
-    padding: 16px;
-    overflow-y: auto;
+    background: var(--terminal-bg);
+    padding: 12px 16px;
+    overflow: hidden;
+    font-family: 'Ubuntu Mono', 'Liberation Mono', 'Consolas', monospace;
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.55;
     display: flex;
     flex-direction: column;
 }
@@ -107,158 +403,185 @@ body {
 #terminal-output {
     flex: 1;
     overflow-y: auto;
-    padding-bottom: 10px;
+    padding-bottom: 8px;
+    scroll-behavior: smooth;
 }
 
 .output-line {
-    margin-bottom: 2px;
+    margin-bottom: 0;
     word-wrap: break-word;
     white-space: pre-wrap;
-    color: #ffffff;
+    color: var(--text-primary);
+    line-height: 1.55;
 }
 
-/* Prompt Styling */
-.prompt {
-    color: #8ae234;
+/* ===== Prompt Styling ===== */
+.prompt-user {
+    color: var(--prompt-user);
     font-weight: bold;
-    text-shadow: 0 0 3px rgba(138, 226, 52, 0.3);
+}
+
+.prompt-sep {
+    color: var(--text-primary);
+}
+
+.prompt-path {
+    color: var(--prompt-path);
+    font-weight: bold;
+}
+
+.prompt-dollar {
+    color: var(--text-primary);
 }
 
 .command {
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 #input-container {
     display: flex;
     align-items: center;
-    margin-top: 5px;
+    margin-top: 3px;
+    flex-shrink: 0;
 }
 
 #prompt {
-    color: #8ae234;
-    font-weight: bold;
-    text-shadow: 0 0 3px rgba(138, 226, 52, 0.3);
     white-space: nowrap;
+    font-weight: bold;
 }
 
 #input-text {
-    color: #ffffff;
-    margin-left: 0;
+    color: var(--text-primary);
     min-height: 1.2em;
     white-space: pre;
 }
 
+/* ===== Cursor ===== */
 #cursor {
-    color: #ffffff;
-    background: #ffffff;
-    animation: blink 1s infinite;
-    margin-left: 1px;
+    background: rgba(255, 255, 255, 0.9);
     display: inline-block;
     width: 8px;
-    height: 14px;
-    line-height: 14px;
-    text-align: center;
+    height: 16px;
+    vertical-align: text-bottom;
+    animation: cursorBlink 1.1s step-end infinite;
+    margin-left: 1px;
 }
 
-/* File highlighting */
+@keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* ===== File & Link Styling ===== */
 .file {
-    color: #729fcf;
+    color: var(--file-color);
     font-weight: bold;
-    text-shadow: 0 0 2px rgba(114, 159, 207, 0.3);
 }
 
-/* Link styling */
 .terminal-link {
-    color: #ad7fa8;
+    color: var(--link-color);
     text-decoration: underline;
-    transition: all 0.3s ease;
+    transition: color 0.15s;
 }
 
 .terminal-link:hover {
-    color: #e6a8df;
-    text-shadow: 0 0 5px rgba(173, 127, 168, 0.5);
+    color: #e0c0ff;
 }
 
-/* Neofetch styling */
+/* ===== Neofetch ===== */
 .neofetch {
-    color: #8ae234;
-    font-family: monospace;
+    color: #ff7043;
+    font-family: 'Ubuntu Mono', monospace;
     font-size: 13px;
-    line-height: 1.1;
-    text-shadow: 0 0 2px rgba(138, 226, 52, 0.2);
+    line-height: 1.12;
+    text-shadow: 0 0 8px rgba(255, 112, 67, 0.35);
 }
 
-/* Command highlighting */
-.command-highlight {
-    color: #fce94f;
-    font-weight: bold;
-    text-shadow: 0 0 3px rgba(252, 233, 79, 0.3);
+/* ===== Terminal Color Palette ===== */
+.t-green  { color: #57e389; }
+.t-yellow { color: #fce94f; }
+.t-orange { color: #ff7043; text-shadow: 0 0 6px rgba(255, 112, 67, 0.5); }
+.t-blue   { color: #729fcf; }
+.t-cyan   { color: #34e2e2; }
+.t-red    { color: #f66151; }
+.t-mag    { color: #c29fdc; }
+.t-dim    { color: rgba(255,255,255,0.38); }
+.t-b      { font-weight: bold; }
+.t-i      { font-style: italic; }
+
+/* ===== Status Text (legacy compat) ===== */
+.error-text { color: #f66151; font-weight: bold; }
+.success-text { color: #57e389; font-weight: bold; }
+.warning-text { color: #ffc030; font-weight: bold; }
+.command-highlight { color: #fce94f; font-weight: bold; }
+
+/* ===== Input syntax highlight ===== */
+#input-display {
+    display: inline;
+    white-space: pre;
+}
+.sh-cmd  { color: #57e389; font-weight: bold; }
+.sh-arg  { color: #fce94f; }
+.sh-flag { color: #34e2e2; }
+.sh-str  { color: #c29fdc; }
+.sh-err  { color: #f66151; }
+
+/* ===== Tab-complete suggestion strip ===== */
+#completion-strip {
+    height: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 2px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+.completion-chip {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.35);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 3px;
+    padding: 0 5px;
+    line-height: 15px;
+    font-family: 'Ubuntu Mono', monospace;
+    pointer-events: none;
+    white-space: nowrap;
+}
+.completion-chip.match {
+    color: rgba(255,255,255,0.62);
+    border-color: rgba(255,255,255,0.18);
 }
 
-/* Scrollbar styling */
+/* ===== Adwaita-style Thin Scrollbar ===== */
 #terminal-output::-webkit-scrollbar {
-    width: 12px;
+    width: 6px;
 }
 
 #terminal-output::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 6px;
+    background: transparent;
 }
 
 #terminal-output::-webkit-scrollbar-thumb {
-    background: rgba(138, 226, 52, 0.3);
-    border-radius: 6px;
-    border: 2px solid #300a24;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 3px;
 }
 
 #terminal-output::-webkit-scrollbar-thumb:hover {
-    background: rgba(138, 226, 52, 0.5);
+    background: rgba(255, 255, 255, 0.32);
 }
 
-/* Cursor animation */
-@keyframes blink {
-    0%, 50% { 
-        opacity: 1; 
-        background: #ffffff;
-        color: #300a24;
-    }
-    51%, 100% { 
-        opacity: 0.3; 
-        background: transparent;
-        color: #ffffff;
-    }
-}
-
-/* Terminal startup animation */
-#terminal-window {
-    animation: terminalStartup 0.8s ease-out;
-}
-
-@keyframes terminalStartup {
-    0% {
-        opacity: 0;
-        transform: scale(0.95) translateY(-20px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    }
-}
-
-/* Text selection */
+/* ===== Text Selection ===== */
 ::selection {
-    background: rgba(138, 226, 52, 0.3);
-    color: #ffffff;
+    background: rgba(78, 201, 74, 0.28);
+    color: var(--text-primary);
 }
 
 ::-moz-selection {
-    background: rgba(138, 226, 52, 0.3);
-    color: #ffffff;
+    background: rgba(78, 201, 74, 0.28);
+    color: var(--text-primary);
 }
 
-/* Hidden input */
+/* ===== Hidden Input ===== */
 #hidden-input {
     position: absolute !important;
     left: -9999px !important;
@@ -266,82 +589,7 @@ body {
     pointer-events: none !important;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-    
-    #terminal-window {
-        width: 100vw;
-        height: 100vh;
-        border-radius: 0;
-        max-width: none;
-    }
-    
-    #terminal-content {
-        padding: 12px;
-        font-size: 12px;
-    }
-    
-    .window-title {
-        font-size: 12px;
-    }
-    
-    .control-btn {
-        width: 10px;
-        height: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    #terminal-content {
-        padding: 8px;
-        font-size: 11px;
-    }
-    
-    #window-controls {
-        padding: 6px 12px;
-    }
-}
-
-/* Terminal focus indicator */
-#terminal-window:focus-within {
-    box-shadow: 0 0 0 2px rgba(138, 226, 52, 0.3), 0 20px 60px rgba(0, 0, 0, 0.5);
-}
-
-/* Loading indicator */
-.loading-dots::after {
-    content: '';
-    animation: loadingDots 1.5s infinite;
-}
-
-@keyframes loadingDots {
-    0%, 20% { content: '.'; }
-    40% { content: '..'; }
-    60% { content: '...'; }
-    80%, 100% { content: ''; }
-}
-
-/* Error text styling */
-.error-text {
-    color: #ef2929;
-    font-weight: bold;
-}
-
-/* Success text styling */
-.success-text {
-    color: #8ae234;
-    font-weight: bold;
-}
-
-/* Warning text styling */
-.warning-text {
-    color: #fce94f;
-    font-weight: bold;
-}
-
-/* Special command outputs */
+/* ===== Pre Tag ===== */
 pre {
     margin: 0;
     font-family: inherit;
@@ -349,39 +597,46 @@ pre {
     word-wrap: break-word;
 }
 
-/* Enhanced focus styles */
-#terminal-content:focus-within #cursor {
-    animation: blink 1s infinite;
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    #ubuntu-dock {
+        display: none;
+    }
+
+    #desktop {
+        left: 0;
+        padding: 8px;
+    }
+
+    #terminal-window {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    #window-controls {
+        border-radius: 0;
+    }
+
+    #terminal-content {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
 }
 
-/* Smooth scrolling */
-#terminal-output {
-    scroll-behavior: smooth;
-}
+@media (max-width: 480px) {
+    #terminal-content {
+        font-size: 11px;
+        padding: 6px 8px;
+    }
 
-/* Typography improvements */
-body {
-    font-feature-settings: "liga" off;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
+    #window-controls {
+        height: 40px;
+        padding: 0 10px;
+    }
 
-/* Terminal window shadow effects */
-#terminal-window::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    background: linear-gradient(45deg, rgba(138, 226, 52, 0.1), rgba(173, 127, 168, 0.1));
-    border-radius: 20px;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-#terminal-window:hover::before {
-    opacity: 1;
+    .window-title {
+        font-size: 11px;
+    }
 }

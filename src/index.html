@@ -11,26 +11,106 @@
 </head>
 
 <body>
-    <!-- Terminal Window -->
-    <div id="terminal-window">
-        <!-- Window Controls -->
-        <div id="window-controls">
-            <div class="control-buttons">
-                <span class="control-btn close"></span>
-                <span class="control-btn minimize"></span>
-                <span class="control-btn maximize"></span>
+    <!-- GNOME Top Panel -->
+    <div id="gnome-panel">
+        <div class="panel-section left">
+            <button class="activities-btn">Activities</button>
+            <span class="app-name">Terminal</span>
+        </div>
+        <div class="panel-section center">
+            <span id="panel-clock"></span>
+        </div>
+        <div class="panel-section right">
+            <div class="sys-cluster">
+                <!-- network -->
+                <div class="sys-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/>
+                    </svg>
+                </div>
+                <!-- volume -->
+                <div class="sys-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                    </svg>
+                </div>
+                <!-- power -->
+                <div class="sys-item" style="font-size:15px;">⏻</div>
             </div>
-            <div class="window-title">naveen@ubuntu: ~</div>
-            <div class="menu-icon">≡</div>
+        </div>
+    </div>
+
+    <!-- Ubuntu Dock -->
+    <div id="ubuntu-dock">
+        <!-- Files -->
+        <div class="dock-item" title="Files">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 3h6l2 3h10a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/>
+            </svg>
+        </div>
+        <!-- Firefox -->
+        <div class="dock-item" title="Firefox">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 2a10 10 0 0 1 7.38 16.7c-.68.58-1.47 1.08-2.34 1.47a10.08 10.08 0 0 1-6.08 0A10 10 0 0 1 12 2z"/>
+            </svg>
+        </div>
+        <!-- VS Code -->
+        <div class="dock-item" title="VS Code">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="rgba(255,255,255,0.75)">
+                <path d="M17.5 2.2 9.7 9.8 4.3 5.5 2 6.8v10.4l2.3 1.3 5.4-4.3 7.8 7.6 4-1.7V3.9zm.9 13.4-5.6-5.6 5.6-5.6v11.2z"/>
+            </svg>
+        </div>
+        <!-- Terminal (active) -->
+        <div class="dock-item active" title="Terminal">
+            <span class="dock-terminal-icon">&gt;_</span>
         </div>
 
-        <!-- Terminal Content -->
-        <div id="terminal-content">
-            <div id="terminal-output"></div>
-            <div id="input-container">
-                <span id="prompt">naveen@ubuntu:~$ </span>
-                <span id="input-text"></span>
-                <span id="cursor">█</span>
+        <div class="dock-divider"></div>
+
+        <!-- Show Apps -->
+        <div class="dock-item show-apps" title="Show Applications">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="3" width="7" height="7" rx="1.5" fill="rgba(255,255,255,0.65)"/>
+                <rect x="14" y="3" width="7" height="7" rx="1.5" fill="rgba(255,255,255,0.65)"/>
+                <rect x="3" y="14" width="7" height="7" rx="1.5" fill="rgba(255,255,255,0.65)"/>
+                <rect x="14" y="14" width="7" height="7" rx="1.5" fill="rgba(255,255,255,0.65)"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Desktop -->
+    <div id="desktop">
+        <!-- Terminal Window -->
+        <div id="terminal-window">
+            <!-- GNOME Headerbar -->
+            <div id="window-controls">
+                <div class="control-buttons">
+                    <span class="control-btn close" title="Close">✕</span>
+                    <span class="control-btn minimize" title="Minimize">─</span>
+                    <span class="control-btn maximize" title="Maximize">□</span>
+                </div>
+                <div class="window-title">naveen@ubuntu: ~</div>
+                <div class="headerbar-actions">
+                    <button class="new-tab-btn" title="New Tab">+</button>
+                    <div class="menu-icon" title="Menu">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terminal Content -->
+            <div id="terminal-content">
+                <div id="terminal-output"></div>
+                <div id="completion-strip"></div>
+                <div id="input-container">
+                    <span id="prompt"><span class="prompt-user">naveen@ubuntu</span><span class="prompt-sep">:</span><span class="prompt-path">~</span><span class="prompt-dollar">$ </span></span>
+                    <span id="input-text"></span>
+                    <span id="cursor"></span>
+                </div>
             </div>
         </div>
     </div>
@@ -39,7 +119,7 @@
     <input type="text" id="hidden-input" style="opacity: 0; position: absolute; left: -9999px;">
 
     <script>
-        // Terminal state
+        // ── Terminal State ──────────────────────────────────────────────────────
         let currentInput = '';
         let currentPath = '~';
         let currentUser = 'naveen';
@@ -48,12 +128,14 @@
         let historyIndex = -1;
         let isExecuting = false;
 
-        // DOM elements
+        // DOM
         const terminalOutput = document.getElementById('terminal-output');
-        const inputText = document.getElementById('input-text');
-        const cursor = document.getElementById('cursor');
-        const prompt = document.getElementById('prompt');
-        const hiddenInput = document.getElementById('hidden-input');
+        const inputText      = document.getElementById('input-text');
+        const cursor         = document.getElementById('cursor');
+        const promptEl       = document.getElementById('prompt');
+        const hiddenInput    = document.getElementById('hidden-input');
+        // alias for legacy references
+        const prompt = promptEl;
 
         // File system simulation
         const fileSystem = {
@@ -178,443 +260,485 @@ Enjoy exploring! 🚀`
             }
         };
 
-        // Commands implementation
+        // ── Helpers ─────────────────────────────────────────────────────────────
+        const c = (cls, txt) => `<span class="${cls}">${txt}</span>`;
+        const bold  = txt => c('t-b', txt);
+        const green = txt => c('t-green', txt);
+        const yellow= txt => c('t-yellow', txt);
+        const cyan  = txt => c('t-cyan', txt);
+        const blue  = txt => c('t-blue', txt);
+        const mag   = txt => c('t-mag', txt);
+        const red   = txt => c('t-red', txt);
+        const orange= txt => c('t-orange', txt);
+        const dim   = txt => c('t-dim', txt);
+
+        const row = (lbl, val) =>
+            `  ${dim('│')} ${cyan(lbl.padEnd(9))} ${val}`;
+
+        // ── Commands ────────────────────────────────────────────────────────────
         const commands = {
-            help: () => `Available commands:
+            help: () =>
+`${bold(green('Available commands:'))}
 
-Basic Commands:
-  help          Show this help message
-  whoami        Display current user
-  pwd           Print working directory
-  ls [options]  List directory contents
-  cat <file>    Display file contents
-  clear         Clear terminal screen
+${yellow('Navigation & Files')}
+  ${green('help')}          Show this help
+  ${green('ls')} ${cyan('[options]')}  List directory  ${dim('(-la for details)')}
+  ${green('cat')} ${cyan('<file>')}    Print file contents
+  ${green('pwd')}           Working directory
 
-System Info:
-  uname [opts]  System information
-  date          Current date and time
-  uptime        System uptime
-  neofetch      Detailed system info
-  ps            Running processes
+${yellow('System Info')}
+  ${green('whoami')}        Current user
+  ${green('uname')} ${cyan('[opts]')}  Kernel info      ${dim('(-a for full)')}
+  ${green('date')}          Current date/time
+  ${green('uptime')}        System uptime
+  ${green('ps')}            Process list
+  ${green('neofetch')}      System overview (fancy)
+  ${green('htop')}          CPU / memory monitor
 
-Utilities:
-  history       Command history
-  echo <text>   Display text
-  fortune       Random quote
-  cowsay <msg>  ASCII cow with message
+${yellow('Utilities')}
+  ${green('echo')} ${cyan('<text>')}   Print text
+  ${green('history')}       Command history
+  ${green('fortune')}       Random dev quote
+  ${green('cowsay')} ${cyan('<msg>')} ASCII cow
+  ${green('clear')}         Clear screen  ${dim('(or Ctrl+L)')}
 
-Tips:
-  • Use ↑/↓ arrows for command history
-  • Press Tab for command completion
-  • Try 'ls' then 'cat <filename>' to explore
-  • Use 'clear' to clean up the terminal
+${yellow('Tips')}
+  ${dim('↑↓')} history  ${dim('Tab')} completion  ${dim('Ctrl+L')} clear
 
-Start exploring with: ls`,
+${dim('Try:')} ${green('ls')} then ${green('cat about.txt')}`,
 
-            whoami: () => currentUser,
+            whoami: () => green(bold(currentUser)),
 
-            pwd: () => '/home/naveen',
+            pwd: () => blue('/home/naveen'),
 
             ls: (args) => {
                 const files = Object.keys(fileSystem[currentPath] || {});
-                if (files.length === 0) {
-                    return 'ls: cannot access current directory: No such file or directory';
+                if (!files.length) return red('ls: empty directory');
+                const now = new Date();
+                const mons = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                if (args.includes('-la') || args.includes('-al') || args.includes('-l')) {
+                    const total = files.reduce((s,f) => s + (fileSystem[currentPath][f]?.length || 512), 0);
+                    const rows = files.map(f => {
+                        const content = fileSystem[currentPath][f] || '';
+                        const size = content.length || 512;
+                        const dt = new Date(now - Math.floor(Math.random()*30)*864e5);
+                        const dateStr = `${mons[dt.getMonth()]} ${dt.getDate().toString().padStart(2)} ${dt.getHours().toString().padStart(2,'0')}:${dt.getMinutes().toString().padStart(2,'0')}`;
+                        const perm = f.endsWith('.md') ? dim('-rw-r--r--') : dim('-rw-r--r--');
+                        const fName = f.endsWith('.md') ? c('t-cyan t-b', f)
+                                    : f.endsWith('.txt') ? c('t-blue t-b', f)
+                                    : green(bold(f));
+                        return `${perm} ${dim('1')} ${green(currentUser)} ${green(currentUser)} ${yellow(size.toString().padStart(7))} ${dim(dateStr)} ${fName}`;
+                    });
+                    return `${dim('total ' + Math.floor(total/512))}\n${rows.join('\n')}`;
                 }
-
-                if (args.includes('-la') || args.includes('-l')) {
-                    const now = new Date();
-                    return files.map(file => {
-                        const size = Math.floor(Math.random() * 8192) + 1024;
-                        const date = new Date(now.getTime() - Math.random() * 30 * 24 * 60 * 60 * 1000);
-                        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-                        const formatDate = `${monthNames[date.getMonth()]} ${date.getDate().toString().padStart(2)} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
-
-                        const permissions = file.endsWith('.txt') || file.endsWith('.md') ? '-rw-r--r--' : '-rwxr-xr-x';
-                        return `${permissions} 1 ${currentUser} ${currentUser} ${size.toString().padStart(8)} ${formatDate} <span class="file">${file}</span>`;
-                    }).join('\n');
-                }
-
-                return files.map(file => `<span class="file">${file}</span>`).join('  ');
+                return files.map(f => {
+                    if (f.endsWith('.md'))  return c('t-cyan t-b', f);
+                    if (f.endsWith('.txt')) return c('t-blue t-b', f);
+                    return green(bold(f));
+                }).join('  ');
             },
 
             cat: (args) => {
-                if (!args.length) {
-                    return 'cat: missing file operand\nTry \'cat --help\' for more information.';
-                }
-
+                if (!args.length) return `${red('cat:')} missing file operand\nTry ${cyan("'cat --help'")} for more information.`;
                 const filename = args[0];
-                const file = fileSystem[currentPath]?.[filename];
-
-                if (!file) {
-                    return `cat: ${filename}: No such file or directory`;
-                }
-
-                // Convert URLs to clickable links with better regex
-                return file.replace(/(https?:\/\/[^\s<>"']+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" class="terminal-link">$1</a>');
+                if (args[0] === '--help') return `Usage: ${green('cat')} ${cyan('[FILE]')}\nPrint file contents to standard output.`;
+                const raw = fileSystem[currentPath]?.[filename];
+                if (raw === undefined) return `${red('cat:')} ${yellow(filename)}: No such file or directory`;
+                // Colorize file contents
+                let out = raw
+                    // section headers (lines ending with :)
+                    .replace(/^([A-Z][^:\n]+):$/gm, m => yellow(bold(m)))
+                    // tree branches
+                    .replace(/(├──|└──|│)/g, m => dim(m))
+                    // key: value pairs
+                    .replace(/^(\w[\w\s\/()]+):\s+(.+)$/gm, (_, k, v) => `${cyan(k)}: ${v}`)
+                    // emoji bullet points — leave as-is (they look good)
+                    // URLs
+                    .replace(/(https?:\/\/[^\s<>"'\n]+)/g,
+                        u => `<a href="${u}" target="_blank" rel="noopener noreferrer" class="terminal-link">${mag(u)}</a>`);
+                return out;
             },
 
-            clear: () => {
-                terminalOutput.innerHTML = '';
-                return '';
-            },
+            clear: () => { terminalOutput.innerHTML = ''; return ''; },
+            cls:   () => { terminalOutput.innerHTML = ''; return ''; },
 
-            cls: () => {
-                terminalOutput.innerHTML = '';
-                return '';
+            date: () => {
+                const d = new Date();
+                return `${cyan(d.toDateString())} ${yellow(d.toTimeString().split(' ')[0])} ${dim(d.toTimeString().split(' ').slice(1).join(' '))}`;
             },
-
-            date: () => new Date().toString(),
 
             uname: (args) => {
-                if (args.includes('-a')) {
-                    return 'Linux ubuntu 5.15.0-portfolio #1 SMP Tue Sep 23 12:00:00 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux';
-                }
-                return 'Linux';
+                if (args.includes('-a'))
+                    return `${green('Linux')} ${yellow('ubuntu')} ${cyan('5.15.0-portfolio')} #1 SMP ${dim('Tue Sep 23 12:00:00 UTC 2025')} ${blue('x86_64 x86_64 x86_64 GNU/Linux')}`;
+                return green('Linux');
             },
 
             uptime: () => {
                 const now = new Date();
-                const bootTime = new Date(now.getTime() - (Math.random() * 86400000 * 7)); // Random uptime up to 7 days
-                const uptimeMs = now - bootTime;
-                const days = Math.floor(uptimeMs / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((uptimeMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((uptimeMs % (1000 * 60 * 60)) / (1000 * 60));
-
-                const timeStr = now.toTimeString().split(' ')[0];
-                const load = [
-                    (Math.random() * 2).toFixed(2),
-                    (Math.random() * 2).toFixed(2),
-                    (Math.random() * 2).toFixed(2)
-                ];
-
-                return ` ${timeStr} up ${days} days, ${hours}:${minutes.toString().padStart(2, '0')}, 1 user, load average: ${load.join(', ')}`;
+                const ms  = Math.floor(Math.random()*7*864e5 + 3600000);
+                const d   = Math.floor(ms/864e5);
+                const h   = Math.floor((ms%864e5)/36e5);
+                const m   = Math.floor((ms%36e5)/6e4);
+                const load= Array.from({length:3}, () => (Math.random()*1.5).toFixed(2));
+                const t   = now.toTimeString().split(' ')[0];
+                return ` ${yellow(t)} up ${green(d + ' days')}, ${green(h+':'+m.toString().padStart(2,'0'))},  ${cyan('1 user')},  load average: ${yellow(load[0])}, ${yellow(load[1])}, ${yellow(load[2])}`;
             },
 
-            ps: () => `  PID TTY          TIME CMD
-  1337 pts/0    00:00:01 portfolio-terminal
-  2048 pts/0    00:00:00 creativity-engine
-  4096 pts/0    00:00:02 javascript-runtime
-  8192 pts/0    00:00:01 content-creator
- 16384 pts/0    00:00:00 ps`,
+            ps: () =>
+`${yellow(bold('  PID'))} ${cyan('TTY')}          ${green('TIME')} CMD
+ ${yellow('1337')} pts/0    00:00:01 ${green('portfolio-terminal')}
+ ${yellow('2048')} pts/0    00:00:00 ${blue('creativity-engine')}
+ ${yellow('4096')} pts/0    00:00:02 ${cyan('javascript-runtime')}
+ ${yellow('8192')} pts/0    00:00:01 ${mag('content-creator')}
+${yellow('16384')} pts/0    00:00:00 ${dim('ps')}`,
+
+            htop: () => {
+                const bars = (pct, len=20) => {
+                    const f = Math.round(pct*len/100);
+                    return green('[') + green('█'.repeat(f)) + dim('░'.repeat(len-f)) + green(']') + yellow(` ${pct}%`);
+                };
+                return `${bold(green('  htop'))} ${dim('─ press q to exit (just type clear)')}
+
+  ${cyan('CPU')} ${bars(Math.floor(Math.random()*40+10))}
+  ${cyan('Mem')} ${bars(Math.floor(Math.random()*30+20))}  ${dim('512MB / 2048MB')}
+  ${cyan('Swp')} ${bars(0)}  ${dim('0MB / 1024MB')}
+
+  ${yellow('PID')}   ${yellow('USER')}     ${yellow('PRI')}  ${yellow('%CPU')} ${yellow('%MEM')} ${yellow('Command')}
+  ${dim('1337')}  ${green('naveen')}     20   ${cyan((Math.random()*5).toFixed(1))}  ${cyan('0.8')}  ${green('portfolio-terminal')}
+  ${dim('2048')}  ${green('naveen')}     20   ${cyan((Math.random()*2).toFixed(1))}  ${cyan('0.3')}  ${blue('creativity-engine')}
+  ${dim('4096')}  ${green('naveen')}     20   ${cyan((Math.random()*3).toFixed(1))}  ${cyan('1.1')}  ${cyan('javascript-runtime')}`;
+            },
 
             history: () => {
-                if (commandHistory.length === 0) {
-                    return 'No commands in history.';
-                }
-                return commandHistory.map((cmd, index) => `${(index + 1).toString().padStart(4)} ${cmd}`).join('\n');
+                if (!commandHistory.length) return dim('No commands in history.');
+                return commandHistory.map((cmd, i) =>
+                    `${dim((i+1).toString().padStart(4))}  ${colorizeInput(cmd)}`
+                ).join('\n');
             },
 
             echo: (args) => args.join(' '),
 
             fortune: () => {
                 const quotes = [
-                    "The best way to predict the future is to invent it. - Alan Kay",
-                    "Code is poetry written in logic.",
-                    "Programming is thinking, not typing.",
-                    "Talk is cheap. Show me the code. - Linus Torvalds",
-                    "First, solve the problem. Then, write the code. - John Johnson",
-                    "The only way to learn a new programming language is by writing programs in it. - Dennis Ritchie",
-                    "Simplicity is the ultimate sophistication. - Leonardo da Vinci",
-                    "Any fool can write code that a computer can understand. Good programmers write code that humans can understand. - Martin Fowler"
+                    ['"The best way to predict the future is to invent it."', 'Alan Kay'],
+                    ['"Talk is cheap. Show me the code."', 'Linus Torvalds'],
+                    ['"Programming is thinking, not typing."', 'Anonymous'],
+                    ['"First, solve the problem. Then, write the code."', 'John Johnson'],
+                    ['"Simplicity is the ultimate sophistication."', 'Leonardo da Vinci'],
+                    ['"Any fool can write code a computer can understand.\nGood programmers write code humans can understand."', 'Martin Fowler'],
+                    ['"Code is like humor. When you have to explain it, it\'s bad."', 'Cory House'],
+                    ['"Make it work, make it right, make it fast."', 'Kent Beck'],
                 ];
-                return quotes[Math.floor(Math.random() * quotes.length)];
+                const [q, a] = quotes[Math.floor(Math.random()*quotes.length)];
+                return `${yellow(q)}\n  ${dim('— ')}${cyan(a)}`;
             },
 
             cowsay: (args) => {
-                const message = args.join(' ') || 'Hello from Naveen! 🐄';
-                const len = message.length;
-                const border = '─'.repeat(len + 2);
-
-                return `
- ┌${border}┐
- │ ${message} │
- └${border}┘
-        \\   ^__^
-         \\  (oo)\\_______
-            (__)\\       )\\/\\
-                ||----w |
-                ||     ||`;
+                const msg = args.join(' ') || 'Hello from Naveen!';
+                const len = msg.length;
+                const b   = '─'.repeat(len + 2);
+                return `${dim(' ┌' + b + '┐')}
+${dim(' │')} ${yellow(msg)} ${dim('│')}
+${dim(' └' + b + '┘')}
+${dim('        \\   ^__^')}
+${dim('         \\  (oo)\\_______')}
+${dim('            (__)\\       )\\/\\')}
+${dim('                ||----w |')}
+${dim('                ||     ||')}`;
             },
 
-            neofetch: () => `
-<span class="neofetch">                    .-/+oossssoo+/-.               ${currentUser}@${currentHost}</span>
-<span class="neofetch">                \`:+ssssssssssssssss+:\`             ────────────────</span>
-<span class="neofetch">              -+ssssssssssssssssssss+-           OS: Ubuntu 22.04.3 LTS x86_64</span>
-<span class="neofetch">            -+sssssssssssssssssssssss+-         Host: Interactive Portfolio</span>
-<span class="neofetch">          \`-/+sssssssssssssssssssssss/-\`       Kernel: 5.15.0-portfolio</span>
-<span class="neofetch">         .+sssssssssssssss+++++++++++++.       Uptime: Always online</span>
-<span class="neofetch">        :+sssssssssssssss+:     .:++++.       Packages: 2048 (npm), 512 (apt)</span>
-<span class="neofetch">       /+sssssssssssssss+.       ./+++.       Shell: interactive-terminal 1.0</span>
-<span class="neofetch">      .+sssssssssssssss+.         ./+.        Resolution: Responsive</span>
-<span class="neofetch">      +sssssssssssssss+.                      DE: Custom Portfolio Environment</span>
-<span class="neofetch">      +sssssssssssssss+                       WM: Browser</span>
-<span class="neofetch">      +sssssssssssssss/                       Terminal: JavaScript Terminal</span>
-<span class="neofetch">      .+sssssssssssss/                        CPU: Creativity Engine</span>
-<span class="neofetch">       \`/+sssssssssss/.                        Memory: ∞ Ideas</span>
-<span class="neofetch">         ./osssssss/.                          Disk (/): Code & Dreams</span>
-<span class="neofetch">           \`-/oss/-\`                            
-<span class="neofetch">              \`--\`                               Contact: linktr.ee/naveensanjula</span>`
+            neofetch: () => {
+                const u = green(bold(currentUser)) + dim('@') + green(bold(currentHost));
+                const sep = dim('─'.repeat(currentUser.length + currentHost.length + 1));
+                return `
+${c('t-orange', '                    .-/+oossssoo+/-.               ')}${u}
+${c('t-orange', '                `:+ssssssssssssssss+:`             ')}${sep}
+${c('t-orange', '              -+ssssssssssssssssssss+-           ')}${cyan('OS:')} Ubuntu 22.04.3 LTS x86_64
+${c('t-orange', '            -+sssssssssssssssssssssss+-         ')}${cyan('Host:')} Interactive Portfolio
+${c('t-orange', '          `-/+sssssssssssssssssssssss/-`       ')}${cyan('Kernel:')} 5.15.0-portfolio
+${c('t-orange', '         .+sssssssssssssss+++++++++++++.       ')}${cyan('Uptime:')} Always online
+${c('t-orange', '        :+sssssssssssssss+:     .:++++.       ')}${cyan('Packages:')} 2048 ${dim('(npm)')} 512 ${dim('(apt)')}
+${c('t-orange', '       /+sssssssssssssss+.       ./+++.       ')}${cyan('Shell:')} interactive-terminal 1.0
+${c('t-orange', '      .+sssssssssssssss+.         ./+.        ')}${cyan('Resolution:')} Responsive
+${c('t-orange', '      +sssssssssssssss+.                      ')}${cyan('DE:')} GNOME Portfolio
+${c('t-orange', '      +sssssssssssssss+                       ')}${cyan('WM:')} Browser
+${c('t-orange', '      +sssssssssssssss/                       ')}${cyan('Terminal:')} JS Terminal 1.0
+${c('t-orange', '      .+sssssssssssss/                        ')}${cyan('CPU:')} Creativity Engine
+${c('t-orange', "       `/+sssssssssss/.                        ")}${cyan('Memory:')} ∞ Ideas
+${c('t-orange', '         ./osssssss/.                          ')}${cyan('Disk:')} Code & Dreams
+${c('t-orange', "           `-/oss/-`                            ")}
+${c('t-orange', "              `--`                               ")}${cyan('Contact:')} ${mag('linktr.ee/naveensanjula')}
+
+  ${'  '.repeat(0)}${['t-red','t-orange','t-yellow','t-green','t-cyan','t-blue','t-mag'].map(cl => c(cl,'███')).join('')}`;
+            }
         };
 
-        // Auto-run commands on load
-        const autoCommands = [
-            { cmd: 'whoami', delay: 800 },
-            { cmd: 'ls', delay: 600 },
-            { cmd: 'cat about.txt', delay: 1000 }
-        ];
+        // ── Colorize input for live display ────────────────────────────────────
+        const knownCmds = new Set(Object.keys(commands).concat(['cls']));
 
-        let autoIndex = 0;
-
-        // Execute command function
-        function executeCommand(input) {
-            const parts = input.trim().split(' ');
-            const command = parts[0].toLowerCase();
-            const args = parts.slice(1);
-
-            if (commands[command]) {
-                return commands[command](args);
-            } else if (command === '') {
-                return '';
-            } else {
-                return `bash: ${command}: command not found`;
-            }
+        function colorizeInput(raw) {
+            if (!raw) return '';
+            const parts = raw.split(' ');
+            const cmd = parts[0];
+            const isKnown = knownCmds.has(cmd.toLowerCase());
+            const cmdSpan = isKnown ? `<span class="sh-cmd">${cmd}</span>`
+                                    : `<span class="sh-err">${cmd}</span>`;
+            if (parts.length === 1) return cmdSpan;
+            const rest = parts.slice(1).map(p => {
+                if (p.startsWith('-'))  return `<span class="sh-flag">${p}</span>`;
+                if (p.startsWith('"') || p.startsWith("'")) return `<span class="sh-str">${p}</span>`;
+                return `<span class="sh-arg">${p}</span>`;
+            }).join(' ');
+            return cmdSpan + ' ' + rest;
         }
 
-        // Typewriter effect for output
-        function typeText(element, text, speed = 15) {
-            return new Promise((resolve) => {
-                let i = 0;
-                element.innerHTML = '';
+        // ── Tab-completion strip ─────────────────────────────────────────────
+        function updateCompletionStrip() {
+            // Injected lazily — only once
+            if (!document.getElementById('completion-strip')) {
+                const strip = document.createElement('div');
+                strip.id = 'completion-strip';
+                document.getElementById('input-container').parentNode
+                    .insertBefore(strip, document.getElementById('input-container'));
+            }
+            const strip = document.getElementById('completion-strip');
+            const input = currentInput.trim();
+            const spaceIdx = input.indexOf(' ');
+            strip.innerHTML = '';
+            if (!input) return;
 
-                function type() {
-                    if (i < text.length) {
-                        if (text.charAt(i) === '<') {
-                            const tagEnd = text.indexOf('>', i);
-                            if (tagEnd !== -1) {
-                                element.innerHTML += text.substring(i, tagEnd + 1);
-                                i = tagEnd + 1;
-                            } else {
-                                element.innerHTML += text.charAt(i);
-                                i++;
-                            }
-                        } else {
-                            element.innerHTML += text.charAt(i);
-                            i++;
-                        }
-                        terminalOutput.scrollTop = terminalOutput.scrollHeight;
-                        setTimeout(type, speed);
-                    } else {
-                        resolve();
-                    }
+            let matches = [];
+            if (spaceIdx === -1) {
+                const partial = input.toLowerCase();
+                matches = [...knownCmds].filter(k => k.startsWith(partial) && k !== partial);
+            } else {
+                const partial = input.slice(spaceIdx + 1).toLowerCase();
+                if (partial) {
+                    const files = Object.keys(fileSystem[currentPath] || {});
+                    matches = files.filter(f => f.toLowerCase().startsWith(partial) && f !== partial);
                 }
-                type();
+            }
+            matches.slice(0, 6).forEach(m => {
+                const chip = document.createElement('span');
+                chip.className = 'completion-chip match';
+                chip.textContent = m;
+                strip.appendChild(chip);
             });
         }
 
-        // Add output to terminal
-        async function addOutput(text, isCommand = false, useTypewriter = false) {
-            const outputDiv = document.createElement('div');
-            outputDiv.className = 'output-line';
-
-            if (isCommand) {
-                outputDiv.innerHTML = `<span class="prompt">${currentUser}@${currentHost}:${currentPath}$ </span><span class="command">${text}</span>`;
-            } else {
-                if (text === '') return;
-                terminalOutput.appendChild(outputDiv);
-
-                if (useTypewriter) {
-                    await typeText(outputDiv, text, 20);
-                } else {
-                    outputDiv.innerHTML = text;
-                }
-                return;
-            }
-
-            terminalOutput.appendChild(outputDiv);
-            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        // ── Execute command ─────────────────────────────────────────────────
+        function executeCommand(input) {
+            const parts = input.trim().split(/\s+/);
+            const cmd   = parts[0].toLowerCase();
+            const args  = parts.slice(1);
+            if (commands[cmd]) return commands[cmd](args);
+            if (cmd === '')     return '';
+            return `${red('bash:')} ${yellow(cmd)}: command not found`;
         }
 
-        // Auto-run initial commands
-        async function runAutoCommands() {
-            // Initial welcome message
-            await addOutput('Welcome to Ubuntu 22.04.3 LTS', false, true);
-            await new Promise(resolve => setTimeout(resolve, 500));
-            await addOutput('', false);
+        // ── Output helpers ──────────────────────────────────────────────────
+        function appendLine(html) {
+            const d = document.createElement('div');
+            d.className = 'output-line';
+            d.innerHTML  = html;
+            terminalOutput.appendChild(d);
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+            return d;
+        }
 
-            // Run auto commands
-            for (const auto of autoCommands) {
-                await new Promise(resolve => setTimeout(resolve, auto.delay));
-                await addOutput(auto.cmd, true);
+        function appendBlank() {
+            appendLine('&nbsp;');
+        }
 
-                const result = executeCommand(auto.cmd);
-                if (result) {
-                    commandHistory.push(auto.cmd);
-                    // Use typewriter effect only for certain commands, not for ls
-                    const useTypewriter = auto.cmd.startsWith('cat') || auto.cmd.startsWith('help') || auto.cmd.startsWith('neofetch');
-                    await addOutput(result, false, useTypewriter);
+        async function appendCommand(rawCmd) {
+            const u = `<span class="prompt-user">${currentUser}@${currentHost}</span>`;
+            const s = `<span class="prompt-sep">:</span>`;
+            const p = `<span class="prompt-path">${currentPath}</span>`;
+            const d$ = `<span class="prompt-dollar">$ </span>`;
+            appendLine(u + s + p + d$ + colorizeInput(rawCmd));
+            return;
+        }
+
+        async function appendOutput(html, typewriter = false) {
+            if (!html && html !== 0) return;
+            const lines = html.split('\n');
+            for (const line of lines) {
+                if (typewriter) {
+                    const el = appendLine('');
+                    await typewriteLine(el, line);
+                } else {
+                    appendLine(line);
                 }
-                await addOutput('', false);
+            }
+        }
+
+        function typewriteLine(el, html, speed = 12) {
+            return new Promise(resolve => {
+                let i = 0, buf = '';
+                function tick() {
+                    if (i >= html.length) { el.innerHTML = buf; resolve(); return; }
+                    // Consume a full tag or a single char, append to buffer,
+                    // then always assign the whole buffer so the DOM stays valid.
+                    if (html[i] === '<') {
+                        const end = html.indexOf('>', i);
+                        if (end !== -1) { buf += html.slice(i, end + 1); i = end + 1; }
+                        else            { buf += html[i++]; }
+                    } else {
+                        buf += html[i++];
+                    }
+                    el.innerHTML = buf;
+                    terminalOutput.scrollTop = terminalOutput.scrollHeight;
+                    setTimeout(tick, speed);
+                }
+                tick();
+            });
+        }
+
+        // ── Auto-run boot sequence ──────────────────────────────────────────
+        const wait = ms => new Promise(r => setTimeout(r, ms));
+
+        async function runAutoCommands() {
+            const bootMsg =
+`${green(bold('Ubuntu 22.04.3 LTS'))} ${dim('naveensanjula.me tty1')}
+
+${dim('naveensanjula.me login:')} ${green('naveen')}
+${dim('Password:')} ${dim('••••••••')}`;
+            await appendOutput(bootMsg, true);
+            await wait(300);
+            appendBlank();
+
+            const seq = [
+                { cmd: 'neofetch',     delay: 400 },
+                { cmd: 'ls',           delay: 600 },
+                { cmd: 'cat about.txt',delay: 800 },
+            ];
+
+            for (const { cmd, delay } of seq) {
+                await wait(delay);
+                await appendCommand(cmd);
+                commandHistory.push(cmd);
+                const result = executeCommand(cmd);
+                await appendOutput(result, cmd.startsWith('cat') || cmd === 'neofetch');
+                appendBlank();
             }
 
             isExecuting = false;
             updatePrompt();
+            updateDisplay();
             hiddenInput.focus();
         }
 
-        // Handle keyboard input
-        function handleInput(char) {
+        // ── Input handlers ──────────────────────────────────────────────────
+        function handleInput(ch) {
             if (isExecuting) return;
-
-            currentInput += char;
+            currentInput += ch;
             updateDisplay();
         }
 
         function handleBackspace() {
             if (isExecuting) return;
-
             currentInput = currentInput.slice(0, -1);
             updateDisplay();
         }
 
         async function handleEnter() {
-            if (isExecuting || currentInput.trim() === '') {
-                if (currentInput.trim() === '') {
-                    await addOutput('', true);
-                    await addOutput('', false);
-                }
-                currentInput = '';
-                updateDisplay();
-                return;
-            }
+            if (isExecuting) return;
+            const raw = currentInput.trim();
+            await appendCommand(currentInput);
+            currentInput = '';
+            updateDisplay();
+            if (!raw) { appendBlank(); return; }
 
             isExecuting = true;
-            const command = currentInput.trim();
+            commandHistory.push(raw);
+            historyIndex = commandHistory.length;
 
-            await addOutput(command, true);
+            const result = executeCommand(raw);
+            await appendOutput(result, raw === 'neofetch' || raw.startsWith('cat') || raw === 'fortune');
+            appendBlank();
 
-            if (command !== '') {
-                commandHistory.push(command);
-                historyIndex = commandHistory.length;
-
-                const result = executeCommand(command);
-                if (result) {
-                    await addOutput(result, false, true);
-                }
-            }
-
-            await addOutput('', false);
-            currentInput = '';
             isExecuting = false;
-            updateDisplay();
             updatePrompt();
+            updateDisplay();
             hiddenInput.focus();
         }
 
-        function handleHistory(direction) {
+        function handleHistory(dir) {
             if (isExecuting) return;
-
-            if (direction === 'up' && historyIndex > 0) {
-                historyIndex--;
-                currentInput = commandHistory[historyIndex];
-            } else if (direction === 'down') {
-                if (historyIndex < commandHistory.length - 1) {
-                    historyIndex++;
-                    currentInput = commandHistory[historyIndex];
-                } else {
-                    historyIndex = commandHistory.length;
-                    currentInput = '';
-                }
-            }
+            if (dir === 'up'   && historyIndex > 0)                    historyIndex--;
+            if (dir === 'down' && historyIndex < commandHistory.length) historyIndex++;
+            currentInput = commandHistory[historyIndex] ?? '';
             updateDisplay();
         }
 
         function handleTab() {
             if (isExecuting) return;
+            const input    = currentInput.trim();
+            const spaceIdx = input.indexOf(' ');
 
-            const input = currentInput.trim();
-            const spaceIndex = input.indexOf(' ');
-
-            if (spaceIndex === -1) {
-                // Command completion
-                const partial = input.toLowerCase();
-                const matches = Object.keys(commands).filter(cmd => cmd.startsWith(partial));
-
-                if (matches.length === 1) {
-                    currentInput = matches[0];
-                    updateDisplay();
-                } else if (matches.length > 1) {
-                    addOutput(`${matches.join('  ')}`, false);
-                }
+            if (spaceIdx === -1) {
+                const p = input.toLowerCase();
+                const m = [...knownCmds].filter(k => k.startsWith(p));
+                if (m.length === 1) { currentInput = m[0]; updateDisplay(); }
+                else if (m.length > 1) appendOutput(m.map(k => green(k)).join('  '));
             } else {
-                // File completion
-                const command = input.substring(0, spaceIndex);
-                const partialFile = input.substring(spaceIndex + 1).toLowerCase();
-
-                // Only provide file completion for commands that work with files
-                if (['cat', 'ls'].includes(command)) {
-                    const files = Object.keys(fileSystem[currentPath] || {});
-                    const matches = files.filter(file => file.toLowerCase().startsWith(partialFile));
-
-                    if (matches.length === 1) {
-                        currentInput = `${command} ${matches[0]}`;
-                        updateDisplay();
-                    } else if (matches.length > 1) {
-                        addOutput(`${matches.join('  ')}`, false);
-                    }
-                }
+                const partial = input.slice(spaceIdx + 1).toLowerCase();
+                const files   = Object.keys(fileSystem[currentPath] || {});
+                const m       = files.filter(f => f.toLowerCase().startsWith(partial));
+                if (m.length === 1) { currentInput = input.slice(0, spaceIdx + 1) + m[0]; updateDisplay(); }
+                else if (m.length > 1) appendOutput(m.map(f => blue(f)).join('  '));
             }
         }
 
+        // ── Display update ──────────────────────────────────────────────────
         function updateDisplay() {
-            inputText.textContent = currentInput;
+            inputText.innerHTML = colorizeInput(currentInput);
+            updateCompletionStrip();
         }
 
         function updatePrompt() {
-            prompt.textContent = `${currentUser}@${currentHost}:${currentPath}$ `;
+            prompt.innerHTML =
+                `<span class="prompt-user">${currentUser}@${currentHost}</span>` +
+                `<span class="prompt-sep">:</span>` +
+                `<span class="prompt-path">${currentPath}</span>` +
+                `<span class="prompt-dollar">$ </span>`;
         }
 
-        // Event listeners
-        document.addEventListener('keydown', (e) => {
+        // ── Events ──────────────────────────────────────────────────────────
+        document.addEventListener('keydown', e => {
             hiddenInput.focus();
-
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                handleEnter();
-            } else if (e.key === 'Backspace') {
-                e.preventDefault();
-                handleBackspace();
-            } else if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                handleHistory('up');
-            } else if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                handleHistory('down');
-            } else if (e.key === 'Tab') {
-                e.preventDefault();
-                handleTab();
-            } else if (e.key.length === 1) {
-                e.preventDefault();
-                handleInput(e.key);
-            } else if (e.ctrlKey && e.key === 'l') {
-                e.preventDefault();
-                executeCommand('clear');
-                updateDisplay();
+            switch (e.key) {
+                case 'Enter':     e.preventDefault(); handleEnter();           break;
+                case 'Backspace': e.preventDefault(); handleBackspace();       break;
+                case 'ArrowUp':   e.preventDefault(); handleHistory('up');     break;
+                case 'ArrowDown': e.preventDefault(); handleHistory('down');   break;
+                case 'Tab':       e.preventDefault(); handleTab();             break;
+                default:
+                    if (e.ctrlKey && e.key === 'l') { e.preventDefault(); commands.clear(); updateDisplay(); }
+                    else if (e.ctrlKey && e.key === 'c') { e.preventDefault(); currentInput = ''; isExecuting = false; appendCommand(''); appendBlank(); updateDisplay(); }
+                    else if (!e.ctrlKey && !e.metaKey && !e.altKey && e.key.length === 1) { e.preventDefault(); handleInput(e.key); }
             }
         });
 
-        document.addEventListener('click', () => {
-            hiddenInput.focus();
-        });
+        document.addEventListener('click', () => hiddenInput.focus());
 
-        // Initialize
+        // ── Panel clock ──────────────────────────────────────────────────────
+        function updateClock() {
+            const n = new Date();
+            const days  = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+            const mons  = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            const hh = n.getHours().toString().padStart(2,'0');
+            const mm = n.getMinutes().toString().padStart(2,'0');
+            document.getElementById('panel-clock').textContent =
+                `${days[n.getDay()]} ${mons[n.getMonth()]} ${n.getDate()}  ${hh}:${mm}`;
+        }
+        updateClock();
+        setInterval(updateClock, 10000);
+
+        // ── Boot ─────────────────────────────────────────────────────────────
         isExecuting = true;
         hiddenInput.focus();
-
-        // Start auto commands after page load
-        setTimeout(() => {
-            runAutoCommands();
-        }, 1000);
+        setTimeout(runAutoCommands, 600);
     </script>
 </body>
 

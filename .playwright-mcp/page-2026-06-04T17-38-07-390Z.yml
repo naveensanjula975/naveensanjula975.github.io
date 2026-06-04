@@ -1,0 +1,34 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - button "Activities" [ref=e4] [cursor=pointer]
+      - generic [ref=e5]: Terminal
+    - generic [ref=e7]: Thu Jun 4 23:08
+    - generic [ref=e9]:
+      - img [ref=e11] [cursor=pointer]
+      - img [ref=e17] [cursor=pointer]
+      - generic [ref=e20] [cursor=pointer]: ⏻
+  - generic [ref=e21]:
+    - generic "Files" [ref=e22] [cursor=pointer]:
+      - img [ref=e23]
+    - generic "Firefox" [ref=e25] [cursor=pointer]:
+      - img [ref=e26]
+    - generic "VS Code" [ref=e29] [cursor=pointer]:
+      - img [ref=e30]
+    - generic "Terminal" [ref=e32] [cursor=pointer]:
+      - generic [ref=e33]: ">_"
+    - generic "Show Applications" [ref=e35] [cursor=pointer]:
+      - img [ref=e36]
+  - generic [ref=e42]:
+    - generic [ref=e43]:
+      - generic [ref=e44]:
+        - generic "Close" [ref=e45] [cursor=pointer]: ✕
+        - generic "Minimize" [ref=e46] [cursor=pointer]: ─
+        - generic "Maximize" [ref=e47] [cursor=pointer]: □
+      - generic: "naveen@ubuntu: ~"
+      - generic [ref=e48]:
+        - button "+" [ref=e49] [cursor=pointer]
+        - generic "Menu" [ref=e50] [cursor=pointer]:
+          - img [ref=e51]
+    - generic [ref=e59]: naveen@ubuntu:~$
+  - textbox [active]

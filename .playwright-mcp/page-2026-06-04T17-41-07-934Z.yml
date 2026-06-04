@@ -1,0 +1,84 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - button "Activities" [ref=e4] [cursor=pointer]
+      - generic [ref=e5]: Terminal
+    - generic [ref=e7]: Thu Jun 4 23:11
+    - generic [ref=e9]:
+      - img [ref=e11] [cursor=pointer]
+      - img [ref=e17] [cursor=pointer]
+      - generic [ref=e20] [cursor=pointer]: ⏻
+  - generic [ref=e21]:
+    - generic "Files" [ref=e22] [cursor=pointer]:
+      - img [ref=e23]
+    - generic "Firefox" [ref=e25] [cursor=pointer]:
+      - img [ref=e26]
+    - generic "VS Code" [ref=e29] [cursor=pointer]:
+      - img [ref=e30]
+    - generic "Terminal" [ref=e32] [cursor=pointer]:
+      - generic [ref=e33]: ">_"
+    - generic "Show Applications" [ref=e35] [cursor=pointer]:
+      - img [ref=e36]
+  - generic [ref=e42]:
+    - generic [ref=e43]:
+      - generic [ref=e44]:
+        - generic "Close" [ref=e45] [cursor=pointer]: ✕
+        - generic "Minimize" [ref=e46] [cursor=pointer]: ─
+        - generic "Maximize" [ref=e47] [cursor=pointer]: □
+      - generic: "naveen@ubuntu: ~"
+      - generic [ref=e48]:
+        - button "+" [ref=e49] [cursor=pointer]
+        - generic "Menu" [ref=e50] [cursor=pointer]:
+          - img [ref=e51]
+    - generic [ref=e55]:
+      - generic [ref=e56]:
+        - generic [ref=e61]:
+          - generic [ref=e62]: Ubuntu 22.04.3 LTS
+          - text: naveensanjula.me tty1
+        - generic [ref=e63]: "naveensanjula.me login: naveen"
+        - generic [ref=e64]: "Password: ••••••••"
+        - generic [ref=e66]: naveen@ubuntu:~$ neofetch
+        - generic [ref=e67]:
+          - text: .-/+oossssoo+/-.
+          - generic [ref=e68]: naveen
+          - text: "@"
+          - generic [ref=e69]: ubuntu
+        - generic [ref=e70]: "`:+ssssssssssssssss+:` ─────────────"
+        - generic [ref=e71]: "-+ssssssssssssssssssss+- OS: Ubuntu 22.04.3 LTS x86_64"
+        - generic [ref=e72]: "-+sssssssssssssssssssssss+- Host: Interactive Portfolio"
+        - generic [ref=e73]: "`-/+sssssssssssssssssssssss/-` Kernel: 5.15.0-portfolio"
+        - generic [ref=e74]: ".+sssssssssssssss+++++++++++++. Uptime: Always online"
+        - generic [ref=e75]: ":+sssssssssssssss+: .:++++. Packages: 2048 (npm) 512 (apt)"
+        - generic [ref=e76]: "/+sssssssssssssss+. ./+++. Shell: interactive-terminal 1.0"
+        - generic [ref=e77]: ".+sssssssssssssss+. ./+. Resolution: Responsive"
+        - generic [ref=e78]: "+sssssssssssssss+. DE: GNOME Portfolio"
+        - generic [ref=e79]: "+sssssssssssssss+ WM: Browser"
+        - generic [ref=e80]: "+sssssssssssssss/ Terminal: JS Terminal 1.0"
+        - generic [ref=e81]: ".+sssssssssssss/ CPU: Creativity Engine"
+        - generic [ref=e82]: "`/+sssssssssss/. Memory: ∞ Ideas"
+        - generic [ref=e83]: "./osssssss/. Disk: Code & Dreams"
+        - generic [ref=e84]: "`-/oss/-`"
+        - generic [ref=e85]: "`--` Contact: linktr.ee/naveensanjula"
+        - generic [ref=e86]: █████████████████████
+        - generic [ref=e88]: naveen@ubuntu:~$ ls
+        - generic [ref=e89]: about.txt projects.txt social.txt skills.txt README.md
+        - generic [ref=e91]: naveen@ubuntu:~$ cat about.txt
+        - generic [ref=e92]: "Name: Naveen Sanjula"
+        - generic [ref=e93]: "Location: Sri Lanka 🇱🇰"
+        - generic [ref=e94]: "University: Sabaragamuwa University - Faculty of Computing"
+        - generic [ref=e96]: "About Me:"
+        - generic [ref=e97]: I'm a passionate developer and content creator who loves exploring
+        - generic [ref=e98]: the intersection of technology and creativity. Currently pursuing
+        - generic [ref=e99]: my degree in Computing while building projects and sharing knowledge
+        - generic [ref=e100]: through various platforms.
+        - generic [ref=e102]: "Interests:"
+        - generic [ref=e103]: • Full-stack Web Development
+        - generic [ref=e104]: • Linux Systems & Open Source
+        - generic [ref=e105]: • Content Creation & Educational Technology
+        - generic [ref=e106]: • Mobile App Development
+        - generic [ref=e107]: • DevOps & Cloud Technologies
+        - generic [ref=e108]: "Fun Fact: I think I'm funny."
+        - generic [ref=e109]: "Contact: Type 'cat social.txt' for contact information"
+        - generic [ref=e111]: naveen@ubuntu:~$
+      - generic [ref=e59]: naveen@ubuntu:~$
+  - textbox [active]
